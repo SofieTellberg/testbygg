@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Byggherrarna – Byggherrerevision</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+<div class="app">
+  <div class="sidebar">
+    <div class="logo-box"><span>B</span></div>
+    <div class="logo-text">Bygg<br>herr<br>arna</div>
+    <div class="sidebar-label">Meny</div>
+    <div class="sidebar-menu">
+      <div class="sidebar-item active"><i class="ti ti-clipboard-check"></i> Revisioner</div>
+      <div class="sidebar-item"><i class="ti ti-folder"></i> Projekt</div>
+      <div class="sidebar-item"><i class="ti ti-star"></i> Favoriter</div>
+      <div class="sidebar-item"><i class="ti ti-settings"></i> Inställningar</div>
+    </div>
+  </div>
+ 
+  <div class="main">
+    <div class="topbar">
+      <h1>Byggherrarna – Byggherrerevision</h1>
+      <p>Kvarteret Hammaren, etapp 1 &nbsp;·&nbsp; Revision 3, april 2026</p>
+    </div>
+    <div class="board">
+ 
+      <div class="column">
+        <div class="col-title">Avtal och kontrakt</div>
+        <div class="card" onclick="openModal('organisation')"><div class="card-title">Organisation enligt kontrakt</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('avsteg')"><div class="card-title">Avsteg från kontrakt</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('tillagg')"><div class="card-title">Tilläggsavtal / ändringsavtal</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('avtalSystem')"><div class="card-title">Avtal i interna system</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+      </div>
+ 
+      <div class="column">
+        <div class="col-title">Ekonomi</div>
+        <div class="card" onclick="openModal('budget')"><div class="card-title">Budget enligt beslut</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('betalplan')"><div class="card-title">Betalplan enligt kontrakt</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('riktkostnad')"><div class="card-title">Riktkostnad</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('slutkostnad')"><div class="card-title">Slutkostnadsprognos</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('budgetforandringar')"><div class="card-title">Hantering av budgetförändringar</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+      </div>
+ 
+      <div class="column">
+        <div class="col-title">Tidsplan</div>
+        <div class="card" onclick="openModal('huvudtidsplan')"><div class="card-title">Huvudtidsplan</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('projektering')"><div class="card-title">Projekteringstidsplan / FAS 1</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('produktion')"><div class="card-title">Produktionstidsplan / FAS 2</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('avvikelserTid')"><div class="card-title">Eventuella avvikelser från tidsplan</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+      </div>
+ 
+      <div class="column">
+        <div class="col-title">Dokumentation och system</div>
+        <div class="card" onclick="openModal('dokSystem')"><div class="card-title">Dokumentation i interna system</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('arkivering')"><div class="card-title">Arkivering av handlingar</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('versioner')"><div class="card-title">Versionshantering</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+      </div>
+ 
+      <div class="column">
+        <div class="col-title">Kvalitet, miljö & arbetsmiljö (KMA)</div>
+        <div class="card" onclick="openModal('byggmoten')"><div class="card-title">Kontroll av kontinuerliga byggmöten</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('avvikelserRamp')"><div class="card-title">Avvikelser mot ramprogram</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('kmaplan')"><div class="card-title">Kontroll av UE:s KMA-plan</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+        <div class="card" onclick="openModal('kvalitetsplan')"><div class="card-title">Kvalitetsplan</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+ 
+<div class="overlay" id="overlay" style="display:none;" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()"><i class="ti ti-x"></i></button>
+    <div class="modal-header">
+      <h2 id="modal-title">–</h2>
+      <div class="info-wrap">
+        <div class="info-btn">i</div>
+        <div class="info-tooltip" id="modal-tooltip"></div>
+      </div>
+    </div>
+    <p class="modal-sub" id="modal-sub">–</p>
+    <div class="modal-section">Deluppgifter</div>
+    <div class="checkbox-list" id="modal-checks"></div>
+    <div class="modal-section">Kommentar</div>
+    <textarea class="comment-area" placeholder="Skriv kommentar här..."></textarea>
+    <button class="save-btn">Spara</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
