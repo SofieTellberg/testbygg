@@ -7,7 +7,7 @@ const lorem = [
 ];
  
 const cards = {
-  organisation: { title: 'Organisation enligt kontrakt', sub: 'Är det samma organisation som på kontraktet? Uppfylls rollerna?', tooltipHTML: 'Projekteringen ska dokumenteras. Vid ändring av en byggnad får erfarenheter från den befintliga byggnaden användas. Om olika personer utför olika delar av projekteringen ska projekteringen samordnas.', checks: lorem[0] },
+  organisation: { title: 'Byggherrens ansvar enligt PBL', sub: 'Ansvarsfördelning inom byggherreorganisationen är beskriven?', tooltipHTML: 'Projekteringen ska dokumenteras. Vid ändring av en byggnad får erfarenheter från den befintliga byggnaden användas. Om olika personer utför olika delar av projekteringen ska projekteringen samordnas.', checks: lorem[0] },
   avsteg: { title: 'Avsteg från kontrakt', sub: 'Finns dokumenterade avsteg? Är de godkända?', tooltipHTML: 'Alla avsteg ska vara skriftligt godkända av behörig beställarrepresentant och arkiveras i projektets dokumentsystem.', checks: lorem[1] },
   tillagg: { title: 'Tilläggsavtal / ändringsavtal', sub: 'Är tilläggsavtal upprättade och signerade?', tooltipHTML: 'Kontrollera att samtliga tilläggsavtal är formellt signerade och inte överstiger beslutade ekonomiska ramar.', checks: lorem[2] },
   avtalSystem: { title: 'Avtal i interna system', sub: 'Finns avtal tillgängliga i interna system?', tooltipHTML: 'Alla avtal ska vara uppladdade och sökbara i projektportalen senast 5 arbetsdagar efter signering.', checks: lorem[3] },
