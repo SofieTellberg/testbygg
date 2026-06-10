@@ -70,7 +70,7 @@
         <div class="card" onclick="openModal('kmaplan')"><div class="card-title">Verifiering av funktionskrav är genomförd</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
         <div class="card" onclick="openModal('kvalitetsplan')"><div class="card-title">Intyg & dokumentation</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
       </div>
-
+ 
       <div class="column">
         <div class="col-title">Regelverk</div>
         <div class="card" onclick="openModal('bbr')"><div class="card-title">BBR</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
@@ -78,7 +78,8 @@
         <div class="card" onclick="openModal('afs')"><div class="card-title">AFS</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
         <div class="card" onclick="openModal('miljobalken')"><div class="card-title">Miljöbalken</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
         <div class="card" onclick="openModal('rattvistbyggande')"><div class="card-title">Rättvist byggande</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-
+      </div>
+ 
     </div>
   </div>
 </div>
@@ -94,14 +95,30 @@
       </div>
     </div>
     <p class="modal-sub" id="modal-sub">–</p>
-    <div class="modal-section">Deluppgifter</div>
-    <div class="checkbox-list" id="modal-checks"></div>
-    <div class="modal-section">Kommentar</div>
-    <textarea class="comment-area" placeholder="Skriv kommentar här..."></textarea>
-    <button class="save-btn">Spara</button>
+ 
+    <!-- Vanliga kontrollfrågor -->
+    <div id="modal-tasks">
+      <div class="modal-section">Deluppgifter</div>
+      <div class="checkbox-list" id="modal-checks"></div>
+      <div class="modal-section">Kommentar</div>
+      <textarea class="comment-area" placeholder="Skriv kommentar här..."></textarea>
+      <button class="save-btn">Spara</button>
+    </div>
+ 
+    <!-- Regelverk – dolt som standard -->
+    <div id="modal-regelverk" style="display:none;">
+      <div class="info-box">
+        <div class="info-box-label">Om regelverket</div>
+        <div class="info-box-text" id="modal-info-text"></div>
+      </div>
+      <div class="info-divider"></div>
+      <div class="info-links-label">Läs mer</div>
+      <div id="modal-links"></div>
+    </div>
+ 
   </div>
 </div>
-
+ 
 <script src="script.js"></script>
 </body>
 </html>
