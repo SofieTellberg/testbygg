@@ -70,7 +70,7 @@ body { font-family: system-ui, sans-serif; background: #f5f3ee; overflow: hidden
  
 .info-wrap:hover .info-tooltip { display: block; }
  
-.info-tooltip { display: none; position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);}
+.info-tooltip { display: none; position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%); background: #2e1a4a; color: #f0e8ff; font-size: 11px; font-family: system-ui, sans-serif; line-height: 1.6; padding: 10px 12px; border-radius: 8px; width: 220px; z-index: 9999; text-align: left; }
  
 .info-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #2e1a4a; }
  
