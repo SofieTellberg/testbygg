@@ -53,9 +53,18 @@ body { font-family: system-ui, sans-serif; background: #f5f3ee; overflow: hidden
  
 /* MODAL */
 .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 100; }
- 
-.modal { background: #fff; border-radius: 12px; padding: 28px; width: 440px; position: relative; border: 0.5px solid rgba(26,74,46,0.15); max-height: 90vh; overflow-y: auto; }
- 
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  width: 440px;
+  position: relative;
+  border: 0.5px solid rgba(26,74,46,0.15);
+  max-height: 90vh;
+  overflow: visible;
+}
+
 .modal-close { position: absolute; top: 12px; right: 12px; background: #fff; color: #1a2e1a; border: 0.5px solid rgba(26,74,46,0.3); border-radius: 50%; width: 28px; height: 28px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s, color 0.15s; }
  
 .modal-close:hover { background: #1a4a2e; color: #fff; }
@@ -89,10 +98,7 @@ body { font-family: system-ui, sans-serif; background: #f5f3ee; overflow: hidden
  
 .info-tooltip {
   display: none;
-  position: absolute;
-  top: 130%;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
   background: #2e1a4a;
   color: #f0e8ff;
   font-size: 11px;
