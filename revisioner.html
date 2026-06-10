@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Byggherrerevisionen – Revisioner</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="revisioner.css">
+
+</head>
+<body>
+ 
+  <div class="sidebar">
+    <div class="sidebar-top">
+      <div class="logo-row">
+        <div class="logo">B</div>
+        <span class="logo-name">Byggherrerevisionen</span>
+      </div>
+      <div class="user">
+        <div class="avatar">KF</div>
+        <div>
+          <div class="user-name">Karl Frisell</div>
+          <div class="user-status"><div class="status-dot"></div>Inloggad</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-label">Navigering</div>
+      <div class="nav-item" onclick="window.location.href='index.html'"><i class="ti ti-home"></i> Startsida</div>
+      <div class="nav-item"><i class="ti ti-database"></i>Öppen data</div>
+      <div class="nav-item"><i class="ti ti-file-description"></i>Dokument</div>
+      <div class="nav-item"><i class="ti ti-chart-bar"></i>Statistik</div>
+      <div class="nav-item"><i class="ti ti-mail"></i>Kontakta oss</div>
+      <div class="nav-item"><i class="ti ti-settings"></i> Inställningar</div>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="nav-item"><i class="ti ti-user-circle"></i> Mitt konto</div>
+      <div class="nav-item"><i class="ti ti-mail"></i> Kontakta oss</div>
+      <div class="nav-item"><i class="ti ti-logout"></i> Logga ut</div>
+    </div>
+  </div>
+ 
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-h">Revisioner</div>
+        <div class="topbar-sub">Här är dina pågående revisioner Karl Frisell</div>
+      </div>
+      <button class="topbar-btn"><i class="ti ti-plus"></i> Ny revision</button>
+    </div>
+ 
+    <div class="body">
+ 
+      <div>
+        <div class="section-label">Pågående</div>
+        <div class="revision-list">
+          <div class="revision">
+            <div class="revision-icon"><i class="ti ti-crane"></i></div>
+            <div class="revision-info">
+              <div class="revision-title" onclick="window.location.href='app.html'">Kvarteret Storken – Byggherrerevision</div>
+              <div class="revision-sub">Projektering, april 2026</div>
+            </div>
+            <div class="revision-meta">
+              <span class="badge badge-active">Pågående</span>
+              <span class="revision-date">Senast ändrad 2 maj 2026</span>
+            </div>
+            <div class="revision-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+          <div class="revision">
+            <div class="revision-icon"><i class="ti ti-crane"></i></div>
+            <div class="revision-info">
+              <div class="revision-title">Kvarteret Sjöstaden – Byggherrerevision</div>
+              <div class="revision-sub">Produktion, mars 2026</div>
+            </div>
+            <div class="revision-meta">
+              <span class="badge badge-active">Pågående</span>
+              <span class="revision-date">Senast ändrad 28 april 2026</span>
+            </div>
+            <div class="revision-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+        </div>
+      </div>
+ 
+      <div>
+        <div class="section-label">Avslutade</div>
+        <div class="revision-list">
+          <div class="revision">
+            <div class="revision-icon"><i class="ti ti-home-check"></i></div>
+            <div class="revision-info">
+              <div class="revision-title">Norra Tornen – Byggherrerevision</div>
+              <div class="revision-sub">Produktion · Avslutades 20 februari 2026</div>
+            </div>
+            <div class="revision-meta">
+              <span class="badge badge-draft">Avslutad</span>
+              <span class="revision-date">Skapad 15 januari 2025</span>
+            </div>
+            <div class="revision-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="revision-new">
+        <div class="revision-new-icon"><i class="ti ti-plus"></i></div>
+        <div>
+          <div class="revision-new-title">Skapa ny revision</div>
+          <div class="revision-new-sub">Starta en ny byggherrerevision för ett projekt</div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+</body>
+</html>
