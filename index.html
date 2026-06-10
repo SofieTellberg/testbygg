@@ -3,104 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontrollprogram – Byggherrerevision (projektering)</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-  <link rel="stylesheet" href="style.css">
+  <title>Byggherrerevisionen – Startsida</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+
 </head>
 <body>
  
-<div class="app">
   <div class="sidebar">
-    <div class="logo-box"><span>B</span></div>
-    <div class="logo-text">Byggherrerevision</div>
-    <div class="sidebar-label">Meny</div>
-    <div class="sidebar-menu">
-      <div class="sidebar-item active"><i class="ti ti-clipboard-check"></i> Revisioner</div>
-      <div class="sidebar-item"><i class="ti ti-folder"></i> Projekt</div>
-      <div class="sidebar-item"><i class="ti ti-star"></i> Favoriter</div>
-      <div class="sidebar-item"><i class="ti ti-settings"></i> Inställningar</div>
+    <div class="sidebar-top">
+      <div class="logo-row">
+        <div class="logo">B</div>
+        <span class="logo-name">Byggherrerevisionen</span>
+      </div>
+      <div class="user">
+        <div class="avatar">KF</div>
+        <div>
+          <div class="user-name">Karl Frisell</div>
+          <div class="user-status"><div class="status-dot"></div>Inloggad</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-label">Navigering</div>
+      <div class="nav-item" onclick="window.location.href='revisioner.html'"> <i class="ti ti-clipboard-check"></i> Revisioner</div>
+      <div class="nav-item"><i class="ti ti-database"></i>Öppen data</div>
+      <div class="nav-item"><i class="ti ti-file-description"></i>Dokument</div>
+      <div class="nav-item"><i class="ti ti-chart-bar"></i>Statisik</div>
+      <div class="nav-item"><i class="ti ti-mail"></i>Kontakta oss</div>
+      <div class="nav-item"><i class="ti ti-settings"></i> Inställningar</div>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="nav-item"><i class="ti ti-user-circle"></i> Mitt konto</div>
+      <div class="nav-item"><i class="ti ti-mail"></i> Kontakta oss</div>
+      <div class="nav-item"><i class="ti ti-logout"></i> Logga ut</div>
     </div>
   </div>
  
   <div class="main">
     <div class="topbar">
-      <h1>Kontrollprogram – Byggherrerevision (projektering)</h1>
-      <p>Kvarteret Hammaren, etapp 1 &nbsp;·&nbsp; Revision 1, april 2026</p>
+      <div class="topbar-h">Välkommen till startsidan, Karl Frisell!</div>
+      <div class="topbar-sub">Onsdag 10 juni 2026</div>
     </div>
-    <div class="board">
  
-      <div class="column">
-        <div class="col-title">Byggherreansvar & laguppfyllelse</div>
-        <div class="card" onclick="openModal('organisation')"><div class="card-title">Byggherrens ansvar enligt PBL</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('avsteg')"><div class="card-title">Kontrollansvarig (KA) är utsedd</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('tillagg')"><div class="card-title">Kravställning från Byggherre är definerad</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('avtalSystem')"><div class="card-title">Kontrollplan</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+    <div class="body">
+ 
+      <div class="welcome">
+        <div class="welcome-tag">Om verktyget</div>
+        <div class="welcome-h">Välkommen till Byggherrerevisionen</div>
+        <p class="welcome-p">Byggherrerevisionen är byggt av byggherrar och för byggherrar!</p>
+        <p class="welcome-p">Vi vet vilka utmaningar och vilket ansvar som följer med byggherrerollen. Därför har vi skapat verktyget Byggherrerevisionen. Ett verktyg som hjälper sig att kontrollera, följa upp och kvalitetsäkra dina projekt från projektering till produktion.</p>
+        <p class="welcome-p">Byggherrerevisionen bygger på de krav som ställs i Plan- och bygglgen (PBL) och Boverkets byggregler (BBR), samtidigt som även viktiga regelverk som Arbetsmiljöverkets föreskrifter och Miljöblken är integrerade i arbetsprocesserna.</p>
+        <p class="welcome-p">Vill du veta hur du hittar på sidan eller hur verktyget är tänkt att fungera? Tryck på knappen "Hur fungerar det?" för att läsa mer! Du är också varmt välkommen att kontakta oss om du har några frågor!</p>
+        <button class="welcome-btn">Hur fungerar det? <i class="ti ti-arrow-right"></i></button>
       </div>
  
-      <div class="column">
-        <div class="col-title">Avtal & upphandling</div>
-        <div class="card" onclick="openModal('budget')"><div class="card-title">Affärsform är vald</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('betalplan')"><div class="card-title">Tidsplan enligt kontrakt</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('riktkostnad')"><div class="card-title">Avtal med konsult finns</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('slutkostnad')"><div class="card-title">Ersättningsform är fastställd</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('budgetforandringar')"><div class="card-title">Kontroll- & verifieringskrav är reglerade</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+      <div>
+        <div class="section-label">Senaste revisioner</div>
+        <div class="recent">
+          <div class="recent-header">
+            <span class="recent-title">Pågående revisioner</span>
+            <span class="recent-link">Visa alla <i class="ti ti-arrow-right"></i></span>
+          </div>
+          <div class="recent-item" onclick="window.location.href='app.html'">
+            <div class="recent-icon"><i class="ti ti-crane"></i></div>
+            <div>
+              <div class="recent-item-title">Kvarteret Storken – Byggherrerevision</div>
+              <div class="recent-item-sub">Projektering, april 2026</div>
+            </div>
+            <span class="recent-badge">Pågående</span>
+            <div class="recent-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+          <div class="recent-item">
+            <div class="recent-icon"><i class="ti ti-crane"></i></div>
+            <div>
+              <div class="recent-item-title">Kvartert Sjöstaden – Byggherrerevision</div>
+              <div class="recent-item-sub">Produktion, mars 2026</div>
+            </div>
+            <span class="recent-badge">Pågående</span>
+            <div class="recent-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+        </div>
       </div>
  
-      <div class="column">
-        <div class="col-title">Projektering</div>
-        <div class="card" onclick="openModal('huvudtidsplan')"><div class="card-title">Projekteringsorganisation</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('projektering')"><div class="card-title">Byggherrens krav är definerad inför projektering</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('produktion')"><div class="card-title">Funktionskrav är definerade</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('avvikelserTid')"><div class="card-title">Arbetsmiljörisker är beaktade</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
- 
-      <div class="column">
-        <div class="col-title">Överlämnande & förvaltning</div>
-        <div class="card" onclick="openModal('dokSystem')"><div class="card-title">Relationshandlingar finns</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('arkivering')"><div class="card-title">Drift- & underhållsinstruktioner finns</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('versioner')"><div class="card-title">Överlämnande till förvaltning sker</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
- 
-      <div class="column">
-        <div class="col-title">Verifiering</div>
-        <div class="card" onclick="openModal('byggmoten')"><div class="card-title">Kontrollplan är uppfylld</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('avvikelserRamp')"><div class="card-title">Kontrollprogram är uppfyllt</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('kmaplan')"><div class="card-title">Verifiering av funktionskrav är genomförd</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('kvalitetsplan')"><div class="card-title">Intyg & dokumentation finns</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
-
-      <div class="column">
-        <div class="col-title">Regelverk</div>
-        <div class="card" onclick="openModal('pbl')"><div class="card-title">Plan- och bygglagen (PBL)</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('pbf')"><div class="card-title">Plan- och byggförordningen (PBF)</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('bf')"><div class="card-title">Boverkets föreskrifter</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('afs')"><div class="card-title">Arbetsmiljölagen</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('rf')"><div class="card-title">Rättvist byggande</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
+      <div>
+        <div class="section-label">Snabblänkar</div>
+        <div class="quick-grid">
+          <div class="quick-card">
+            <div class="quick-card-icon"><i class="ti ti-database"></i></div>
+            <div>
+              <div class="quick-card-title">Öppen data</div>
+              <div class="quick-card-sub">API-anslutning från externa källor</div>
+            </div>
+            <div class="quick-card-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+          <div class="quick-card">
+            <div class="quick-card-icon"><i class="ti ti-file-description"></i></div>
+            <div>
+              <div class="quick-card-title">Dokument</div>
+              <div class="quick-card-sub">Samling av dokument för nedladdning</div>
+            </div>
+            <div class="quick-card-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+          <div class="quick-card">
+            <div class="quick-card-icon"><i class="ti ti-chart-bar"></i></div>
+            <div>
+              <div class="quick-card-title">Statistik</div>
+              <div class="quick-card-sub">Statistik baserat på organisation och branschdata</div>
+            </div>
+            <div class="quick-card-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+         <div class="quick-card">
+            <div class="quick-card-icon"><i class="ti ti-mail"></i></div>
+            <div>
+              <div class="quick-card-title">Kontakta oss</div>
+              <div class="quick-card-sub">Statistik baserat på organisation och branschdata</div>
+            </div>
+            <div class="quick-card-arrow"><i class="ti ti-chevron-right"></i></div>
+          </div>
+          <!-- Platshållare 1 – lägg till eget innehåll här -->
+          <div class="quick-card quick-card-placeholder">
+            <div class="quick-card-icon"><i class="ti ti-plus"></i></div>
+            <div>
+              <div class="quick-card-title">Kommer snart</div>
+              <div class="quick-card-sub">Nya funktioner är påväg</div>
+            </div>
+          </div>
+          <!-- Platshållare 2 – lägg till eget innehåll här -->
+          <div class="quick-card quick-card-placeholder">
+            <div class="quick-card-icon"><i class="ti ti-plus"></i></div>
+            <div>
+              <div class="quick-card-title">Kommer snart</div>
+              <div class="quick-card-sub">Nya funktioner är påväg</div>
+            </div>
+          </div>
+        </div>
       </div>
  
     </div>
   </div>
-</div>
  
-<div class="overlay" id="overlay" style="display:none;" onclick="handleOverlayClick(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()"><i class="ti ti-x"></i></button>
-    <div class="modal-header">
-      <h2 id="modal-title">–</h2>
-      <div class="info-wrap">
-        <div class="info-btn">i</div>
-        <div class="info-tooltip" id="modal-tooltip"></div>
-      </div>
-    </div>
-    <p class="modal-sub" id="modal-sub">–</p>
-    <div class="modal-section">Deluppgifter</div>
-    <div class="checkbox-list" id="modal-checks"></div>
-    <div class="modal-section">Kommentar</div>
-    <textarea class="comment-area" placeholder="Skriv kommentar här..."></textarea>
-    <button class="save-btn">Spara</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
