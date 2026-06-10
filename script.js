@@ -7,26 +7,27 @@ const lorem = [
 ];
  
 const cards = {
-  organisation: { title: 'Byggherrens ansvar enligt PBL', sub: 'Ansvarsfördelning inom byggherreorganisationen är beskriven?', tooltipHTML: 'Detta i enlighet med PBL, PBF samt Boverkets byggregler.', checks: lorem[0] },
-  avsteg: { title: 'Kontrollansvarig (KA) är utsedd', sub: 'Är KA utsedd enligt PBL?', tooltipHTML: 'Alla avsteg ska vara skriftligt godkända av behörig beställarrepresentant och arkiveras i projektets dokumentsystem.', checks: lorem[1] },
-  tillagg: { title: 'Kravställning från byggherre är definierad', sub: 'Är vår kravställning som byggherre dokumenterad i projektets handlingar?', tooltipHTML: 'Kontrollera att samtliga tilläggsavtal är formellt signerade och inte överstiger beslutade ekonomiska ramar.', checks: lorem[2] },
-  avtalSystem: { title: 'Kontrollplan', sub: 'Finns kontrollplan enligt PBL?', tooltipHTML: 'Alla avtal ska vara uppladdade och sökbara i projektportalen senast 5 arbetsdagar efter signering.', checks: lorem[3] },
-  budget: { title: 'Affärsform är vald', sub: 'Är det beslutat om val affärsform.', tooltipHTML: 'T.ex. upphandlingsform, entreprenadform, ersättningsform)?', checks: lorem[4] },
-  betalplan: { title: 'Tidsplan enligt kontrakt', sub: 'Finns huvudtidsplan & projekteringstidsplan', tooltipHTML: 'Kontrollera att fakturor matchar avtalad betalplan.', checks: lorem[0] },
-  riktkostnad: { title: 'Avtal med konsult finns?', sub: 'Har man kontrakterat projekterande konsulter? Är konsulterna upphandlade enligt nya BBR?', tooltipHTML: 'Riktkostnaden ska uppdateras månadsvis och kommuniceras till ekonomiansvarige och styrgrupp.', checks: lorem[1] },
-  slutkostnad: { title: 'Ersärrningsform är fastställd', sub: 'Ersättningsform är beslutad', tooltipHTML: 'Slutkostnadsprognosen ska baseras på utfall + återstående arbete.', checks: lorem[2] },
-  budgetforandringar: { title: 'Kontroll- och verifieringskrav är reglerade', sub: 'Är byggherrens krav på kontroll, verifiering och dokumentation reglerade i avtalet?', tooltipHTML: 'Alla budgetförändringar ska beslutas av behörig person enligt attestordningen.', checks: lorem[3] },
-  huvudtidsplan: { title: 'Projekteringsorganisation', sub: 'Är projekteringsorganisation fastställd?', tooltipHTML: 'Kontrollera att huvudtidsplanen är godkänd av alla parter.', checks: lorem[4] },
-  projektering: { title: 'Byggherrens krav är definierade inför projektering', sub: 'Krav från byggherre finns', tooltipHTML: 'Verifiera att projekteringshandlingar levereras enligt plan.', checks: lorem[0] },
-  produktion: { title: 'Funktionskrav är definierade', sub: 'Funktionskrav är fastställda', tooltipHTML: 'Stäm av mot entreprenörens detaljplan.', checks: lorem[1] },
-  avvikelserTid: { title: 'Arbetsmiljörisker är beaktade i projektering', sub: 'Arbetsmiljörisker är identifierade', tooltipHTML: 'Tidsavvikelser över 2 veckor ska dokumenteras med rotorsak och åtgärdsplan.', checks: lorem[2] },
-  dokSystem: { title: 'Relationshandlingar finns', sub: 'Relationshandlingar finns', tooltipHTML: 'Kontrollera att dokumentstrukturen följer projektets informationsplan.', checks: lorem[3] },
-  arkivering: { title: 'Drift- och underhållsinstruktioner finns', sub: 'Drift- och underhållsinstruktioner finns', tooltipHTML: 'Sluthandlingar ska arkiveras inom 30 dagar efter godkännande.', checks: lorem[4] },
-  versioner: { title: 'Överlämnande till förvaltning sker', sub: 'Överlämnande till förvaltning sker?', tooltipHTML: 'Föråldrade versioner ska markeras inaktuella.', checks: lorem[0] },
-  byggmoten: { title: 'Kontrollplan är uppfylld', sub: 'Kontrollplan är uppfylld?', tooltipHTML: 'Protokoll ska upprättas och distribueras inom 5 arbetsdagar.', checks: lorem[1] },
-  avvikelserRamp: { title: 'Kontrollprogram är uppfyllt', sub: 'Är krav i kontrollprogram uppfyllda?', tooltipHTML: 'Avvikelser ska vara godkända av beställaren.', checks: lorem[2] },
-  kmaplan: { title: 'Verifiering av funktionskrav är genomförd', sub: 'Verifiering är genomförd', tooltipHTML: 'UE med kontraktsvärde över 500 tkr ska ha en projektspecifik KMA-plan.', checks: lorem[3] },
-  kvalitetsplan: { title: 'Intyg och dokumentation finns', sub: 'Intyg och dokumentation finns', tooltipHTML: 'Kontrollera att kvalitetsplanen är reviderad för aktuell fas.', checks: lorem[4] }
+  organisation: { title: 'Organisation enligt kontrakt', sub: 'Är det samma organisation som på kontraktet? Uppfylls rollerna?', tooltipHTML: 'Projekteringen ska dokumenteras. Vid ändring av en byggnad får erfarenheter från den befintliga byggnaden användas. Om olika personer utför olika delar av projekteringen ska projekteringen samordnas.', checks: lorem[0] },
+  avsteg: { title: 'Avsteg från kontrakt', sub: 'Finns dokumenterade avsteg? Är de godkända?', tooltipHTML: 'Alla avsteg ska vara skriftligt godkända av behörig beställarrepresentant och arkiveras i projektets dokumentsystem.', checks: lorem[1] },
+  tillagg: { title: 'Tilläggsavtal / ändringsavtal', sub: 'Är tilläggsavtal upprättade och signerade?', tooltipHTML: 'Kontrollera att samtliga tilläggsavtal är formellt signerade och inte överstiger beslutade ekonomiska ramar.', checks: lorem[2] },
+  avtalSystem: { title: 'Avtal i interna system', sub: 'Finns avtal tillgängliga i interna system?', tooltipHTML: 'Alla avtal ska vara uppladdade och sökbara i projektportalen senast 5 arbetsdagar efter signering.', checks: lorem[3] },
+  budget: { title: 'Budget enligt beslut', sub: 'Följer projektet fastställd budget?', tooltipHTML: 'Jämför senaste prognos mot investeringsbeslutets budget. Avvikelser över 5% ska eskaleras till styrgruppen.', checks: lorem[4] },
+  betalplan: { title: 'Betalplan enligt kontrakt', sub: 'Följs betalplanen i enlighet med kontrakt?', tooltipHTML: 'Kontrollera att fakturor matchar avtalad betalplan.', checks: lorem[0] },
+  riktkostnad: { title: 'Riktkostnad', sub: 'Är riktkostnaden uppdaterad och kommunicerad?', tooltipHTML: 'Riktkostnaden ska uppdateras månadsvis och kommuniceras till ekonomiansvarige och styrgrupp.', checks: lorem[1] },
+  slutkostnad: { title: 'Slutkostnadsprognos', sub: 'Är slutkostnadsprognosen uppdaterad?', tooltipHTML: 'Slutkostnadsprognosen ska baseras på utfall + återstående arbete.', checks: lorem[2] },
+  budgetforandringar: { title: 'Hantering av budgetförändringar', sub: 'Hur hanteras och dokumenteras budgetförändringar?', tooltipHTML: 'Alla budgetförändringar ska beslutas av behörig person enligt attestordningen.', checks: lorem[3] },
+  huvudtidsplan: { title: 'Huvudtidsplan', sub: 'Är huvudtidsplanen aktuell och följs den?', tooltipHTML: 'Kontrollera att huvudtidsplanen är godkänd av alla parter.', checks: lorem[4] },
+  projektering: { title: 'Projekteringstidsplan / FAS 1', sub: 'Följs projekteringstidsplanen för FAS 1?', tooltipHTML: 'Verifiera att projekteringshandlingar levereras enligt plan.', checks: lorem[0] },
+  produktion: { title: 'Produktionstidsplan / FAS 2', sub: 'Följs produktionstidsplanen för FAS 2?', tooltipHTML: 'Stäm av mot entreprenörens detaljplan.', checks: lorem[1] },
+  avvikelserTid: { title: 'Eventuella avvikelser från tidsplan', sub: 'Finns avvikelser och är de dokumenterade?', tooltipHTML: 'Tidsavvikelser över 2 veckor ska dokumenteras med rotorsak och åtgärdsplan.', checks: lorem[2] },
+  dokSystem: { title: 'Dokumentation i interna system', sub: 'Är all dokumentation uppladdad och åtkomlig?', tooltipHTML: 'Kontrollera att dokumentstrukturen följer projektets informationsplan.', checks: lorem[3] },
+  arkivering: { title: 'Arkivering av handlingar', sub: 'Arkiveras handlingar enligt rutin?', tooltipHTML: 'Sluthandlingar ska arkiveras inom 30 dagar efter godkännande.', checks: lorem[4] },
+  versioner: { title: 'Versionshantering', sub: 'Används korrekt versionshantering på ritningar?', tooltipHTML: 'Föråldrade versioner ska markeras inaktuella.', checks: lorem[0] },
+  byggmoten: { title: 'Kontroll av kontinuerliga byggmöten', sub: 'Hålls och dokumenteras byggmöten löpande?', tooltipHTML: 'Protokoll ska upprättas och distribueras inom 5 arbetsdagar.', checks: lorem[1] },
+  avvikelserRamp: { title: 'Avvikelser mot ramprogram', sub: 'Finns avvikelser mot ramprogram? Är de hanterade?', tooltipHTML: 'Avvikelser ska vara godkända av beställaren.', checks: lorem[2] },
+  kmaplan: { title: 'Kontroll av UE:s KMA-plan', sub: 'Har underentreprenörer godkänd KMA-plan?', tooltipHTML: 'UE med kontraktsvärde över 500 tkr ska ha en projektspecifik KMA-plan.', checks: lorem[3] },
+  kvalitetsplan: { title: 'Kvalitetsplan', sub: 'Är kvalitetsplanen aktuell och följs den?', tooltipHTML: 'Kontrollera att kvalitetsplanen är reviderad för aktuell fas.', checks: lorem[4] },
+  test: { title: 'test', sub:'test?', tooltipHTML: 'testa test', checks: lorem[3] }
 };
  
 function openModal(key) {
