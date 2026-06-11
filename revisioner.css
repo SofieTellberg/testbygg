@@ -1,358 +1,104 @@
-
-    * { 
-       box-sizing: border-box; 
-       margin: 0; 
-       padding: 0; 
-    }
+* { box-sizing: border-box; margin: 0; padding: 0; }
  
-    body {
-      font-family: system-ui, sans-serif;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-      background: #f5f3ee;
-    }
+body { font-family: system-ui, sans-serif; display: flex; height: 100vh; overflow: hidden; background: #f5f5f5; }
  
-    /* SIDEBAR */
-    .sidebar { 
-       width: 220px; 
-       background: #1a4a2e; 
-       display: flex; 
-       flex-direction: column; 
-       flex-shrink: 0; 
-    }
-
-    .sidebar-top { 
-       padding: 20px 16px; 
-       border-bottom: 0.5px solid rgba(255,255,255,0.06); 
-    }
-
-    .logo-row { 
-       display: flex; 
-       align-items: center; 
-       gap: 8px; 
-       margin-bottom: 14px; 
-    }
-
-    .logo { 
-       background: #c8d84a; 
-       border-radius: 5px; 
-       width: 28px; 
-       height: 28px; 
-       display: flex; 
-       align-items: center; 
-       justify-content: center; 
-       font-size: 12px; 
-       font-weight: 600; 
-       color: #1a4a2e; 
-    }
-
-    .logo-name { 
-       font-size: 12px; 
-       font-weight: 500; 
-       color: #fff; 
-    }
-
-    .user { 
-       background: rgba(255,255,255,0.07); 
-       border-radius: 8px; 
-       padding: 10px 12px; 
-       display: flex; 
-       align-items: center; 
-       gap: 10px; 
-    }
-
-    .avatar { 
-       width: 30px; 
-       height: 30px; 
-       border-radius: 50%; 
-       background: #c8d84a; 
-       display: flex; 
-       align-items: center; 
-       justify-content: center; 
-       font-size: 11px; 
-       font-weight: 600; 
-       color: #1a4a2e; 
-       flex-shrink: 0; 
-    }
-
-    .user-name { 
-       font-size: 12px; 
-       color: #fff; 
-       font-weight: 500; 
-    }
-
-    .user-status { 
-       font-size: 10px; 
-       color: #c8d84a; 
-       display: flex; 
-       align-items: center; 
-       gap: 4px; 
-       margin-top: 2px; 
-    }
-
-    .status-dot { 
-       width: 5px; 
-       height: 5px; 
-       border-radius: 50%; 
-       background: #c8d84a; 
-    }
-
-    .sidebar-nav { 
-       flex: 1; 
-       padding: 12px 8px; 
-    }
-
-    .nav-label { 
-       font-size: 9px; 
-       color: rgba(255,255,255,0.3); 
-       letter-spacing: 1.5px; 
-       text-transform: uppercase; 
-       padding: 0 8px; 
-       margin-bottom: 6px; 
-       margin-top: 8px; 
-    }
-
-    .nav-item { 
-       display: flex; 
-       align-items: center; 
-       gap: 10px; 
-       padding: 8px 10px; 
-       border-radius: 6px; 
-       cursor: pointer; 
-       margin-bottom: 2px; 
-       font-size: 12px; 
-       color: rgba(255,255,255,0.6); 
-    }
-
-    .nav-item:hover {
-       background: rgba(255,255,255,0.06); 
-    }
-
-    .nav-item.active { 
-       background: rgba(255,255,255,0.1); 
-       color: #fff; 
-    }
-
-    .nav-item.active i { 
-       color: #c8d84a; 
-    }
-
-    .nav-item i { 
-       font-size: 15px; 
-    }
-
-    .sidebar-bottom { 
-       padding: 10px 8px; 
-       border-top: 0.5px solid rgba(255,255,255,0.06); 
-    }
+/* SIDEBAR */
+.sidebar { width: 220px; background: #1e3a6e; display: flex; flex-direction: column; flex-shrink: 0; }
  
-    /* MAIN */
-    .main { 
-       flex: 1; 
-       display: flex; 
-       flex-direction: column; 
-       overflow: hidden; 
-    }
-
-    .topbar { 
-       background: #fff; 
-       padding: 14px 28px; 
-       border-bottom: 0.5px solid rgba(26,74,46,0.08); 
-       display: flex; 
-       align-items: center; 
-       justify-content: space-between; 
-       flex-shrink: 0; 
-    }
-
-    .topbar-h { 
-       font-size: 16px; 
-       font-weight: 500; 
-       color: #1a2e1a; 
-    }
-
-    .topbar-sub { 
-       font-size: 11px; 
-       color: #4a6a4a; 
-       margin-top: 2px; 
-    }
-
-    .topbar-btn { 
-       background: #1a4a2e; 
-       color: #fff; 
-       border: none; 
-       border-radius: 7px; 
-       padding: 9px 16px; 
-       font-size: 12px; 
-       font-weight: 500; 
-       cursor: pointer; 
-       display: flex; 
-       align-items: center; 
-       gap: 6px; 
-    }
-
-    .topbar-btn i { 
-       font-size: 14px; 
-    }
+.sidebar-top { padding: 20px 16px; border-bottom: 0.5px solid rgba(255,255,255,0.06); }
  
-    .body { 
-       flex: 1; 
-       overflow-y: auto; 
-       padding: 20px 24px; 
-       display: flex; 
-       flex-direction: column; 
-       gap: 16px; 
-    }
+.logo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
  
-    .section-label { 
-       font-size: 10px; 
-       color: #4a6a4a; 
-       letter-spacing: 1.5px; 
-       text-transform: uppercase; 
-       font-weight: 500; 
-       margin-bottom: 10px; 
-    }
+.logo { background: #f5a623; border-radius: 5px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #1e3a6e; }
  
-    /* REVISION ITEMS */
-    .revision-list { 
-       display: flex; 
-       flex-direction: column; 
-       gap: 10px; 
-    }
+.logo-name { font-size: 12px; font-weight: 500; color: #fff; }
  
-    .revision { 
-       background: #fff; 
-       border-radius: 10px; 
-       border: 0.5px solid rgba(26,74,46,0.1); 
-       padding: 16px 20px; 
-       cursor: pointer; 
-       display: flex; 
-       align-items: center; 
-       gap: 16px; 
-       transition: border-color 0.15s; 
-    }
-
-    .revision:hover { 
-       border-color: #1a4a2e; 
-    }
-
-    .revision-icon { 
-       width: 40px; 
-       height: 40px; 
-       background: #dde8d0; 
-       border-radius: 8px; 
-       display: flex; 
-       align-items: center; 
-       justify-content: center; 
-       flex-shrink: 0; 
-    }
-
-    .revision-icon i { 
-       font-size: 20px; 
-       color: #1a4a2e; 
-    }
-
-    .revision-info { 
-       flex: 1; 
-    }
-
-    .revision-title { 
-       font-size: 13px; 
-       font-weight: 500; 
-       color: #1a2e1a; 
-       margin-bottom: 3px; 
-    }
-
-    .revision-sub { 
-       font-size: 11px; 
-       color: #4a6a4a; 
-    }
-
-    .revision-meta { 
-       display: flex; 
-       flex-direction: column; 
-       align-items: flex-end; 
-       gap: 6px; 
-    }
-
-    .badge { 
-       font-size: 10px; 
-       padding: 3px 10px; 
-       border-radius: 20px; 
-       font-weight: 500; 
-       white-space: nowrap; 
-    }
-
-    .badge-active { 
-       background: #dde8d0; 
-       color: #1a4a2e; 
-    }
-
-    .badge-draft { 
-       background: #f07160; 
-       color: #ffffff; 
-       border: 0.5px solid rgba(26,74,46,0.15); 
-    }
-
-    .revision-date { 
-       font-size: 10px; 
-       color: #4a6a4a; 
-    }
-
-    .revision-arrow i { 
-       font-size: 16px; 
-       color: rgba(26,74,46,0.2); 
-       margin-left: 12px; 
-    }
+.user { background: rgba(255,255,255,0.07); border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
  
-    /* NEW REVISION */
-    .revision-new { 
-       background: #fff; 
-       border-radius: 10px; 
-       border: 0.5px dashed rgba(26,74,46,0.2); 
-       padding: 16px 20px; 
-       cursor: pointer; 
-       display: flex; 
-       align-items: center; 
-       gap: 16px; 
-       transition: border-color 0.15s; 
-    }
-
-    .revision-new:hover { 
-       border-color: #1a4a2e; 
-       background: #f9f8f5; 
-    }
-
-    .revision-new-icon { 
-       width: 40px; 
-       height: 40px; 
-       background: #f5f3ee;
-       border-radius: 8px; 
-       display: flex; 
-       align-items: center; 
-       justify-content: center; 
-       flex-shrink: 0; 
-    }
-
-    .revision-new-icon i { 
-       font-size: 20px; 
-       color: rgba(26,74,46,0.35); 
-    }
-
-    .revision-new-title { 
-       font-size: 13px; 
-       font-weight: 500; 
-       color: rgba(26,74,46,0.5); 
-    }
-
-    .revision-new-sub { 
-       font-size: 11px; 
-       color: rgba(26,74,46,0.35); 
-       margin-top: 2px; 
-    }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background: #f5a623; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #1e3a6e; flex-shrink: 0; }
  
-    /* MOBILANPASSNING */
-    @media (max-width: 768px) {
-      .sidebar { display: none; }
-      .body { padding: 16px; }
-    }
+.user-name { font-size: 12px; color: #fff; font-weight: 500; }
+ 
+.user-status { font-size: 10px; color: #f5a623; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+ 
+.status-dot { width: 5px; height: 5px; border-radius: 50%; background: #f5a623; }
+ 
+.sidebar-nav { flex: 1; padding: 12px 8px; }
+ 
+.nav-label { font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; padding: 0 8px; margin-bottom: 6px; margin-top: 8px; }
+ 
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; margin-bottom: 2px; font-size: 12px; color: rgba(255,255,255,0.6); }
+ 
+.nav-item:hover { background: rgba(255,255,255,0.06); }
+ 
+.nav-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+ 
+.nav-item.active i { color: #f5a623; }
+ 
+.nav-item i { font-size: 15px; }
+ 
+.sidebar-bottom { padding: 10px 8px; border-top: 0.5px solid rgba(255,255,255,0.06); }
+ 
+/* MAIN */
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+ 
+.topbar { background: #fff; padding: 14px 28px; border-bottom: 0.5px solid rgba(30,58,110,0.08); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+ 
+.topbar-left { }
+ 
+.topbar-h { font-size: 16px; font-weight: 500; color: #1a1a1a; }
+ 
+.topbar-sub { font-size: 11px; color: #4a5a7a; margin-top: 2px; }
+ 
+.topbar-btn { background: #1e3a6e; color: #fff; border: none; border-radius: 7px; padding: 9px 16px; font-size: 12px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+ 
+.topbar-btn i { font-size: 14px; }
+ 
+.body { flex: 1; overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+ 
+.section-label { font-size: 10px; color: #4a5a7a; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
+ 
+/* REVISION ITEMS */
+.revision-list { display: flex; flex-direction: column; gap: 10px; }
+ 
+.revision { background: #fff; border-radius: 10px; border: 0.5px solid rgba(30,58,110,0.1); padding: 16px 20px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: border-color 0.15s; }
+ 
+.revision:hover { border-color: #1e3a6e; }
+ 
+.revision-icon { width: 40px; height: 40px; background: #e8f0f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+ 
+.revision-icon i { font-size: 20px; color: #1e3a6e; }
+ 
+.revision-info { flex: 1; }
+ 
+.revision-title { font-size: 13px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+ 
+.revision-sub { font-size: 11px; color: #4a5a7a; }
+ 
+.revision-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+ 
+.badge { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+ 
+.badge-active { background: #e8f0f9; color: #1e3a6e; }
+ 
+.badge-draft { background: #f07160; color: #ffffff; border: 0.5px solid rgba(30,58,110,0.15); }
+ 
+.revision-date { font-size: 10px; color: #4a5a7a; }
+ 
+.revision-arrow i { font-size: 16px; color: rgba(30,58,110,0.2); margin-left: 12px; }
+ 
+/* NEW REVISION */
+.revision-new { background: #fff; border-radius: 10px; border: 0.5px dashed rgba(30,58,110,0.2); padding: 16px 20px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: border-color 0.15s; }
+ 
+.revision-new:hover { border-color: #1e3a6e; background: #f5f8ff; }
+ 
+.revision-new-icon { width: 40px; height: 40px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+ 
+.revision-new-icon i { font-size: 20px; color: rgba(30,58,110,0.35); }
+ 
+.revision-new-title { font-size: 13px; font-weight: 500; color: rgba(30,58,110,0.5); }
+ 
+.revision-new-sub { font-size: 11px; color: rgba(30,58,110,0.35); margin-top: 2px; }
+ 
+/* MOBILANPASSNING */
+@media (max-width: 768px) { .sidebar { display: none; } .body { padding: 16px; } }
