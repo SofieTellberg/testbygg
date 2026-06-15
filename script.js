@@ -310,10 +310,10 @@ const columns = [
         sub: 'Är arbetsmiljörisker identifierade och beaktade i projekteringen?',
         tooltip: 'BAS-P ansvarar för att samordna arbetsmiljöfrågor under projekteringsskedet.',
         checks: [
-          'BAS-P är utsedd',
-          'Arbetsmiljörisker är identifierade och dokumenterade',
-          'Riskhanteringsplan är upprättad',
-          'Arbetsmiljöhänsyn är integrerade i projekteringshandlingarna'
+          'Är BAS-P utsedd?',
+          'Är arbetsmiljörisker identifierade och dokumenterade?',
+          'Är en riskhanteringsplan upprättad?',
+          'Är arbetsmiljöhänsyn en integrerad del i projekteringshandlingarna?'
         ]
       },
       {
@@ -322,10 +322,10 @@ const columns = [
         sub: 'Är projekteringen samordnad mellan alla discipliner?',
         tooltip: 'God samordning minskar risken för kollisioner och fel i byggskedet.',
         checks: [
-          'Projekteringsmöten hålls regelbundet',
-          'BIM-samordning eller likvärdig process är etablerad',
-          'Kollisionskontroller är genomförda',
-          'Samordningsprotokoll är upprättade'
+          'Hålls projekteringsmöten regelbundet?',
+          'Är BIM-samordning eller likvärdig process integrerad?',
+          'Är kollisionskontroller genomförda?',
+          'Är ett samordningsprotokoll upprättat?'
         ]
       },
       {
@@ -334,10 +334,10 @@ const columns = [
         sub: 'Är alla projekteringshandlingar granskade och godkända?',
         tooltip: 'Granskning av projekteringshandlingar säkerställer att kraven är uppfyllda innan byggstart.',
         checks: [
-          'Handlingar är granskade av byggherre',
-          'Teknisk granskning är genomförd',
-          'Avvikelser mot krav är hanterade',
-          'Slutliga handlingar är godkända och arkiverade'
+          'Är handlingar granskade av byggherren?',
+          'Är teknisk granskning genomförd?',
+          'Är avvikelser mot krav hanterade?',
+          'Är slutliga handlingar godkända och arkiverade?'
         ]
       }
     ]
@@ -352,10 +352,10 @@ const columns = [
         sub: 'Finns uppdaterade relationshandlingar tillgängliga?',
         tooltip: 'Relationshandlingar ska spegla det faktiskt utförda arbetet och utgör underlag för förvaltning.',
         checks: [
-          'Relationshandlingar är upprättade',
-          'Handlingarna är granskade och godkända',
-          'Relationshandlingar är arkiverade i rätt system',
-          'Förvaltningen har fått tillgång till handlingarna'
+          'Är relationshandlingar upprättade?',
+          'Är handlingarna granskade och godkända?',
+          'Är relationshandlingarna arkiverade i rätt system?',
+          'Har förvaltningen fått tillgång till handlingarna?'
         ]
       },
       {
@@ -364,10 +364,10 @@ const columns = [
         sub: 'Finns drift- och underhållsinstruktioner för alla installationer?',
         tooltip: 'Instruktionerna ska täcka alla tekniska system och installationer i byggnaden.',
         checks: [
-          'Drift- och underhållsinstruktioner är upprättade',
-          'Instruktioner täcker alla tekniska system',
-          'Instruktionerna är överlämnade till förvaltningen',
-          'Driftansvarig är utbildad på systemen'
+          'Är drift- och underhållsinstruktioner upprättade?',
+          'Täcker instruktionerna alla tekniska system?',
+          'Har instruktionerna överlämnats till förvaltningen?',
+          'Är driftansvariga utbildade på systemen?'
         ]
       },
       {
@@ -376,10 +376,10 @@ const columns = [
         sub: 'Är förvaltningssystemet uppdaterat med projektets information?',
         tooltip: 'Ett uppdaterat förvaltningssystem är grunden för effektiv fastighetsförvaltning.',
         checks: [
-          'Fastighetsinformation är inlagd i förvaltningssystemet',
-          'Tekniska system är registrerade',
-          'Underhållsplan är upprättad',
-          'Nyckelhantering är dokumenterad'
+          'Är fastighetsinformation inlagd i förvaltningssystemet?',
+          'Har sekniska system registrerats?',
+          'Har en underhållsplan upprättats?',
+          'Är nyckelhantering dokumenterad?'
         ]
       },
       {
@@ -388,10 +388,10 @@ const columns = [
         sub: 'Är överlämnandet till förvaltningen planerat och dokumenterat?',
         tooltip: 'Överlämnandet ska ske strukturerat och inkludera utbildning av förvaltningspersonal.',
         checks: [
-          'Överlämnandeprocess är dokumenterad',
-          'Förvaltningspersonal är identifierad',
-          'Överlämnandemöte är genomfört',
-          'Protokoll från överlämnandemöte är upprättat'
+          'Har överlämnandeprocessen dokumenterats?',
+          'Har förvaltningspersonal identifierats?',
+          'Har överlämnandemöte genomförts?',
+          'Har protokoll från överlämnandemöte upprättats?'
         ]
       },
       {
@@ -400,10 +400,10 @@ const columns = [
         sub: 'Är inflyttningsprocessen planerad och kommunicerad?',
         tooltip: 'En välplanerad inflyttningsprocess skapar goda förutsättningar för hyresgästernas första tid.',
         checks: [
-          'Inflyttningsschema är fastställt',
-          'Hyresgäster är informerade om inflyttningsprocess',
-          'Besiktning vid inflyttning är planerad',
-          'Felanmälningsrutin är kommunicerad till hyresgäster'
+          'Har inflyttningsschema fastställts?',
+          'Har hyresgäster informerats om inflyttningsprocessen?',
+          'Är besiktning vid inflyttning planerad?',
+          'Är felanmälningsrutinen kommunicerad till hyresgäster?'
         ]
       },
       {
@@ -412,7 +412,7 @@ const columns = [
         sub: 'Är garantibesiktning planerad och inbokad?',
         tooltip: 'Garantibesiktning ska normalt genomföras två år efter slutbesked.',
         checks: [
-          'Garantibesiktning är planerad',
+          'Är garantibesiktning är planerad?',
           'Datum för garantibesiktning är fastställt',
           'Ansvarig för garantibesiktning är utsedd',
           'Felrapportering under garantitiden är dokumenterad'
