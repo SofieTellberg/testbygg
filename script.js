@@ -635,7 +635,7 @@ function renderExpandCheck(card) {
     <div class="divider"></div>
     <div class="expand-item">
       <div class="expand-header">
-        <input type="checkbox" id="expand-main-${card.key}" ${allChecked ? 'checked' : ''} style="pointer-events:none; width:15px; height:15px; accent-color:#e87722;">
+        <input type="checkbox" id="expand-main-${card.key}" ${allChecked ? 'checked' : ''} style="width:15px; height:15px; accent-color:#e87722;">
         <label class="expand-label">${card.expandCheck.label}</label>
         <div class="expand-arrow" id="expand-arrow-${card.key}" onclick="toggleExpandMain('${card.key}')">
           <i class="ti ti-chevron-down"></i>
@@ -648,7 +648,7 @@ function renderExpandCheck(card) {
           return `
             <div class="yrke-item">
               <div class="yrke-header">
-                <input type="checkbox" id="yrke-${card.key}-${yrke}" ${yrkeChecked ? 'checked' : ''} style="pointer-events:none; width:13px; height:13px; accent-color:#e87722;">
+                <input type="checkbox" id="yrke-${card.key}-${yrke}" ${yrkeChecked ? 'checked' : ''} style="width:13px; height:13px; accent-color:#e87722;">
                 <label class="yrke-label">${yrkesNamn[yrke]}</label>
                 <div class="yrke-arrow" id="arrow-${card.key}-${yrke}" onclick="toggleYrke('${card.key}','${yrke}')">
                   <i class="ti ti-chevron-down"></i>
