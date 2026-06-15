@@ -101,7 +101,7 @@ const columns = [
         checks: [
           'Är KA formellt utsedd och dokumenterad?',
           'Innehar KA giltigt certifikat?',
-          'Har KA en fastställd beskrivning av uppdragets omfattning samt ansvarsområden?,
+          'Har KA en fastställd beskrivning av uppdragets omfattning samt ansvarsområden?',
           'Är KA uppdrag väldefinerat?'
         ]
       },
