@@ -60,23 +60,19 @@ function toggleYrke(cardKey, yrke) {
   arrow.classList.toggle('open');
 }
  
-function updateYrke(cardKey, yrke) {
-  const subs = document.querySelectorAll('#subs-' + cardKey + '-' + yrke + ' input[type=checkbox]');
-  const anyChecked = Array.from(subs).some(cb => cb.checked);
+function updateSubCheck(cardKey, yrke, field, val) {
+  state[cardKey].expandChecks[yrke][field] = val;
+  const e = state[cardKey].expandChecks[yrke];
+  const yrkeChecked = e.cv || e.ref || e.annat;
   const yrkeBox = document.getElementById('yrke-' + cardKey + '-' + yrke);
-  if (yrkeBox) yrkeBox.checked = anyChecked;
-  updateExpandMain(cardKey);
-}
- 
-function updateExpandMain(cardKey) {
-  const allChecked = yrkesgrupper.every(yrke => {
-    const box = document.getElementById('yrke-' + cardKey + '-' + yrke);
-    return box && box.checked;
+  if (yrkeBox) yrkeBox.checked = yrkeChecked;
+  const allChecked = yrkesgrupper.every(y => {
+    const ex = state[cardKey].expandChecks[y];
+    return ex && (ex.cv || ex.ref || ex.annat);
   });
   const mainBox = document.getElementById('expand-main-' + cardKey);
   if (mainBox) mainBox.checked = allChecked;
-  // Uppdatera kortets status
-  updateCardStatus(cardKey);
+  updateModal();
 }
  
 // ─── DATA ──────────────────────────────────────────────────────────────────
@@ -146,16 +142,15 @@ const columns = [
         ]
       },
       {
-        key: 'tekniska_egenskaper',
-        title: 'Tekniska egenskapskrav är uppfyllda',
-        sub: 'Är de tekniska egenskapskraven enligt BBR beaktade?',
-        tooltip: 'BBR ställer krav på bärförmåga, brandskydd, hygien, buller, energihushållning m.m.',
+        key: 'behoriga_aktorer',
+        title: 'Behöriga aktörer är utsedda',
+        sub: 'Är alla behöriga aktörer formellt utsedda och dokumenterade?',
+        tooltip: 'Utöver KA ska även BAS-P, BAS-U och andra lagstadgade roller vara utsedda och dokumenterade.',
         checks: [
-          'Bärförmåga och stadga är verifierad',
-          'Brandskyddskrav är beaktade i projekteringen',
-          'Energikrav enligt BBR är uppfyllda',
-          'Bullerkrav är verifierade',
-          'Tillgänglighetskrav är beaktade'
+          'BAS-P är utsedd och dokumenterad',
+          'BAS-U är utsedd och dokumenterad',
+          'Certifierade hantverkare för kontrollerade moment är identifierade',
+          'Alla aktörers behörighet är kontrollerad och arkiverad'
         ]
       },
       {
@@ -189,15 +184,15 @@ const columns = [
         ]
       },
       {
-        key: 'tidsplan_kontrakt',
-        title: 'Tidsplan enligt kontrakt',
-        sub: 'Finns kontraktsenlig tidsplan upprättad?',
-        tooltip: 'Tidsplanen ska vara avtalad med samtliga parter och reglera milstolpar och leveranser.',
+        key: 'upphandlingsstrategi',
+        title: 'Upphandlingsstrategi är fastställd',
+        sub: 'Är upphandlingsstrategin beslutad och dokumenterad?',
+        tooltip: 'En tydlig upphandlingsstrategi skapar förutsättningar för effektiv konkurrens och kvalitetssäkring.',
         checks: [
-          'Huvudtidsplan är upprättad och godkänd',
-          'Tidsplanen är förankrad med alla kontraktsparter',
-          'Milstolpar är definierade och kommunicerade',
-          'Tidsplanen är versionshanterad i projektportalen'
+          'Upphandlingsstrategi är dokumenterad',
+          'Utvärderingskriterier är fastställda',
+          'Förfrågningsunderlag är upprättat',
+          'Upphandlingen är genomförd enligt LOU om tillämpligt'
         ]
       },
       {
@@ -228,6 +223,30 @@ const columns = [
         ]
       },
       {
+        key: 'tidsplan_kontrakt',
+        title: 'Tidsplan enligt kontrakt',
+        sub: 'Finns kontraktsenlig tidsplan upprättad?',
+        tooltip: 'Tidsplanen ska vara avtalad med samtliga parter och reglera milstolpar och leveranser.',
+        checks: [
+          'Huvudtidsplan är upprättad och godkänd',
+          'Tidsplanen är förankrad med alla kontraktsparter',
+          'Milstolpar är definierade och kommunicerade',
+          'Tidsplanen är versionshanterad i projektportalen'
+        ]
+      },
+      {
+        key: 'ansvarsforsakring',
+        title: 'Ansvarsförsäkringar är kontrollerade',
+        sub: 'Har alla konsulter och entreprenörer giltiga ansvarsförsäkringar?',
+        tooltip: 'Giltiga ansvarsförsäkringar är ett grundläggande krav för alla som arbetar i projektet.',
+        checks: [
+          'Alla konsulters försäkringsbevis är kontrollerade',
+          'Försäkringsbelopp är tillräckliga',
+          'Försäkringarna gäller under hela projekttiden',
+          'Kopia på försäkringsbevis är arkiverade'
+        ]
+      },
+      {
         key: 'kontroll_verifiering',
         title: 'Kontroll- & verifieringskrav är reglerade',
         sub: 'Är krav på kontroll och verifiering reglerade i avtalen?',
@@ -242,30 +261,6 @@ const columns = [
           id: 'kontroll_expand',
           label: 'Har CV mottagits från samtliga konsulter?'
         }
-      },
-      {
-        key: 'upphandlingsstrategi',
-        title: 'Upphandlingsstrategi är fastställd',
-        sub: 'Är upphandlingsstrategin beslutad och dokumenterad?',
-        tooltip: 'En tydlig upphandlingsstrategi skapar förutsättningar för effektiv konkurrens och kvalitetssäkring.',
-        checks: [
-          'Upphandlingsstrategi är dokumenterad',
-          'Utvärderingskriterier är fastställda',
-          'Förfrågningsunderlag är upprättat',
-          'Upphandlingen är genomförd enligt LOU om tillämpligt'
-        ]
-      },
-      {
-        key: 'ansvarsforsakring',
-        title: 'Ansvarsförsäkringar är kontrollerade',
-        sub: 'Har alla konsulter och entreprenörer giltiga ansvarsförsäkringar?',
-        tooltip: 'Giltiga ansvarsförsäkringar är ett grundläggande krav för alla som arbetar i projektet.',
-        checks: [
-          'Alla konsulters försäkringsbevis är kontrollerade',
-          'Försäkringsbelopp är tillräckliga',
-          'Försäkringarna gäller under hela projekttiden',
-          'Kopia på försäkringsbevis är arkiverade'
-        ]
       }
     ]
   },
@@ -283,6 +278,18 @@ const columns = [
           'Roller och ansvar är tydligt definierade',
           'Organisationsschema är kommunicerat till alla parter',
           'Beslutsmandat är definierade per roll'
+        ]
+      },
+      {
+        key: 'miljo_projektering',
+        title: 'Miljöhänsyn i projekteringen',
+        sub: 'Är miljökrav och hållbarhetsmål integrerade i projekteringen?',
+        tooltip: 'Miljöhänsyn i projekteringsskedet påverkar byggnadens miljöprestanda under hela livscykeln.',
+        checks: [
+          'Miljömål är fastställda för projektet',
+          'Materialval är genomförda med hänsyn till miljö',
+          'Energiprestanda är beräknad och verifierad',
+          'Miljöcertifiering är planerad om tillämpligt'
         ]
       },
       {
@@ -322,18 +329,6 @@ const columns = [
         ]
       },
       {
-        key: 'projekteringshandlingar',
-        title: 'Projekteringshandlingar är granskade',
-        sub: 'Är alla projekteringshandlingar granskade och godkända?',
-        tooltip: 'Granskning av projekteringshandlingar säkerställer att kraven är uppfyllda innan byggstart.',
-        checks: [
-          'Handlingar är granskade av byggherre',
-          'Teknisk granskning är genomförd',
-          'Avvikelser mot krav är hanterade',
-          'Slutliga handlingar är godkända och arkiverade'
-        ]
-      },
-      {
         key: 'samordning_projektering',
         title: 'Samordning av projektering',
         sub: 'Är projekteringen samordnad mellan alla discipliner?',
@@ -346,15 +341,15 @@ const columns = [
         ]
       },
       {
-        key: 'miljo_projektering',
-        title: 'Miljöhänsyn i projekteringen',
-        sub: 'Är miljökrav och hållbarhetsmål integrerade i projekteringen?',
-        tooltip: 'Miljöhänsyn i projekteringsskedet påverkar byggnadens miljöprestanda under hela livscykeln.',
+        key: 'projekteringshandlingar',
+        title: 'Projekteringshandlingar är granskade',
+        sub: 'Är alla projekteringshandlingar granskade och godkända?',
+        tooltip: 'Granskning av projekteringshandlingar säkerställer att kraven är uppfyllda innan byggstart.',
         checks: [
-          'Miljömål är fastställda för projektet',
-          'Materialval är genomförda med hänsyn till miljö',
-          'Energiprestanda är beräknad och verifierad',
-          'Miljöcertifiering är planerad om tillämpligt'
+          'Handlingar är granskade av byggherre',
+          'Teknisk granskning är genomförd',
+          'Avvikelser mot krav är hanterade',
+          'Slutliga handlingar är godkända och arkiverade'
         ]
       }
     ]
@@ -388,30 +383,6 @@ const columns = [
         ]
       },
       {
-        key: 'overlamnande_forvaltning',
-        title: 'Överlämnande till förvaltning sker',
-        sub: 'Är överlämnandet till förvaltningen planerat och dokumenterat?',
-        tooltip: 'Överlämnandet ska ske strukturerat och inkludera utbildning av förvaltningspersonal.',
-        checks: [
-          'Överlämnandeprocess är dokumenterad',
-          'Förvaltningspersonal är identifierad',
-          'Överlämnandemöte är genomfört',
-          'Protokoll från överlämnandemöte är upprättat'
-        ]
-      },
-      {
-        key: 'garantibesiktning',
-        title: 'Garantibesiktning är planerad',
-        sub: 'Är garantibesiktning planerad och inbokad?',
-        tooltip: 'Garantibesiktning ska normalt genomföras två år efter slutbesked.',
-        checks: [
-          'Garantibesiktning är planerad',
-          'Datum för garantibesiktning är fastställt',
-          'Ansvarig för garantibesiktning är utsedd',
-          'Felrapportering under garantitiden är dokumenterad'
-        ]
-      },
-      {
         key: 'forvaltningssystem',
         title: 'Förvaltningssystem är uppdaterat',
         sub: 'Är förvaltningssystemet uppdaterat med projektets information?',
@@ -421,6 +392,18 @@ const columns = [
           'Tekniska system är registrerade',
           'Underhållsplan är upprättad',
           'Nyckelhantering är dokumenterad'
+        ]
+      },
+      {
+        key: 'overlamnande_forvaltning',
+        title: 'Överlämnande till förvaltning sker',
+        sub: 'Är överlämnandet till förvaltningen planerat och dokumenterat?',
+        tooltip: 'Överlämnandet ska ske strukturerat och inkludera utbildning av förvaltningspersonal.',
+        checks: [
+          'Överlämnandeprocess är dokumenterad',
+          'Förvaltningspersonal är identifierad',
+          'Överlämnandemöte är genomfört',
+          'Protokoll från överlämnandemöte är upprättat'
         ]
       },
       {
@@ -434,6 +417,18 @@ const columns = [
           'Besiktning vid inflyttning är planerad',
           'Felanmälningsrutin är kommunicerad till hyresgäster'
         ]
+      },
+      {
+        key: 'garantibesiktning',
+        title: 'Garantibesiktning är planerad',
+        sub: 'Är garantibesiktning planerad och inbokad?',
+        tooltip: 'Garantibesiktning ska normalt genomföras två år efter slutbesked.',
+        checks: [
+          'Garantibesiktning är planerad',
+          'Datum för garantibesiktning är fastställt',
+          'Ansvarig för garantibesiktning är utsedd',
+          'Felrapportering under garantitiden är dokumenterad'
+        ]
       }
     ]
   },
@@ -441,6 +436,18 @@ const columns = [
     id: 'verifiering',
     title: 'Verifiering',
     cards: [
+      {
+        key: 'avvikelsehantering',
+        title: 'Avvikelsehantering är dokumenterad',
+        sub: 'Är alla avvikelser identifierade, hanterade och stängda?',
+        tooltip: 'Alla avvikelser från krav och handlingar ska dokumenteras och hanteras strukturerat.',
+        checks: [
+          'Avvikelselogg är upprättad och aktuell',
+          'Alla avvikelser är klassificerade och ansvarig är utsedd',
+          'Åtgärder för varje avvikelse är dokumenterade',
+          'Stängda avvikelser är verifierade och godkända'
+        ]
+      },
       {
         key: 'kontrollplan_uppfylld',
         title: 'Kontrollplan är uppfylld',
@@ -585,11 +592,6 @@ function getStatus(key) {
   return 'klar';
 }
  
-function updateCardStatus(key) {
-  const status = getStatus(key);
-  applyBadge(document.getElementById('badge-' + key), status);
-}
- 
 function applyBadge(el, status) {
   if (!el) return;
   const map = {
@@ -622,9 +624,7 @@ function isRegelverk(key) {
   return col && col.isRegelverk;
 }
  
-// ─── MODAL ─────────────────────────────────────────────────────────────────
-let currentKey = null;
- 
+// ─── EXPANDERBAR SEKTION ───────────────────────────────────────────────────
 function renderExpandCheck(card) {
   const s = state[card.key];
   const allChecked = yrkesgrupper.every(yrke => {
@@ -635,7 +635,7 @@ function renderExpandCheck(card) {
     <div class="divider"></div>
     <div class="expand-item">
       <div class="expand-header">
-        <input type="checkbox" id="expand-main-${card.key}" ${allChecked ? 'checked' : ''} style="width:15px; height:15px; accent-color:#e87722;">
+        <input type="checkbox" id="expand-main-${card.key}" ${allChecked ? 'checked' : ''} style="width:15px; height:15px; accent-color:#e87722; pointer-events:none;">
         <label class="expand-label">${card.expandCheck.label}</label>
         <div class="expand-arrow" id="expand-arrow-${card.key}" onclick="toggleExpandMain('${card.key}')">
           <i class="ti ti-chevron-down"></i>
@@ -648,7 +648,7 @@ function renderExpandCheck(card) {
           return `
             <div class="yrke-item">
               <div class="yrke-header">
-                <input type="checkbox" id="yrke-${card.key}-${yrke}" ${yrkeChecked ? 'checked' : ''} style="width:13px; height:13px; accent-color:#e87722;">
+                <input type="checkbox" id="yrke-${card.key}-${yrke}" ${yrkeChecked ? 'checked' : ''} style="width:13px; height:13px; accent-color:#e87722; pointer-events:none;">
                 <label class="yrke-label">${yrkesNamn[yrke]}</label>
                 <div class="yrke-arrow" id="arrow-${card.key}-${yrke}" onclick="toggleYrke('${card.key}','${yrke}')">
                   <i class="ti ti-chevron-down"></i>
@@ -667,34 +667,8 @@ function renderExpandCheck(card) {
   `;
 }
  
-function toggleExpandMain(cardKey) {
-  const content = document.getElementById('expand-content-' + cardKey);
-  const arrow = document.getElementById('expand-arrow-' + cardKey);
-  content.classList.toggle('open');
-  arrow.classList.toggle('open');
-}
- 
-function toggleYrke(cardKey, yrke) {
-  const subs = document.getElementById('subs-' + cardKey + '-' + yrke);
-  const arrow = document.getElementById('arrow-' + cardKey + '-' + yrke);
-  subs.classList.toggle('open');
-  arrow.classList.toggle('open');
-}
- 
-function updateSubCheck(cardKey, yrke, field, val) {
-  state[cardKey].expandChecks[yrke][field] = val;
-  const e = state[cardKey].expandChecks[yrke];
-  const yrkeChecked = e.cv || e.ref || e.annat;
-  const yrkeBox = document.getElementById('yrke-' + cardKey + '-' + yrke);
-  if (yrkeBox) yrkeBox.checked = yrkeChecked;
-  const allChecked = yrkesgrupper.every(y => {
-    const ex = state[cardKey].expandChecks[y];
-    return ex && (ex.cv || ex.ref || ex.annat);
-  });
-  const mainBox = document.getElementById('expand-main-' + cardKey);
-  if (mainBox) mainBox.checked = allChecked;
-  updateModal();
-}
+// ─── MODAL ─────────────────────────────────────────────────────────────────
+let currentKey = null;
  
 function openModal(key) {
   currentKey = key;
@@ -731,9 +705,7 @@ function openModal(key) {
         <label for="chk-${i}">${q}</label>
       </div>
     `).join('');
-    if (card.expandCheck) {
-      checksHTML += renderExpandCheck(card);
-    }
+    if (card.expandCheck) checksHTML += renderExpandCheck(card);
     document.getElementById('modal-checks').innerHTML = checksHTML;
     document.getElementById('modal-comment').value = s.comment || '';
     updateModal();
@@ -747,7 +719,6 @@ function updateModal() {
   const card = findCard(currentKey);
   const boxes = document.querySelectorAll('#modal-checks > .checkbox-item input[type=checkbox]');
   state[currentKey].checks = Array.from(boxes).map(b => b.checked);
-  const status = getStatus(currentKey);
   const total = card.checks.length + (card.expandCheck ? 1 : 0);
   let checked = state[currentKey].checks.filter(Boolean).length;
   if (card.expandCheck) {
@@ -760,6 +731,7 @@ function updateModal() {
   const pct = total > 0 ? (checked / total) * 100 : 0;
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-text').textContent = checked + ' / ' + total;
+  const status = getStatus(currentKey);
   applyBadge(document.getElementById('modal-badge'), status);
   applyBadge(document.getElementById('badge-' + currentKey), status);
   const flagged = state[currentKey].flagged;
