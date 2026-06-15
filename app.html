@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Byggherrarna – Byggherrerevision</title>
+  <title>Byggherrerevisionen</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="app.css">
 </head>
@@ -15,76 +15,37 @@
     <div class="logo-text">Byggherrerevisionen</div>
     <div class="sidebar-label">Navigering</div>
     <div class="sidebar-menu">
-      <div class="sidebar-item" onclick="window.location.href='index.html'"><i class="ti ti-home"></i>Startsida</div>
+      <div class="sidebar-item" onclick="window.location.href='index.html'"><i class="ti ti-home"></i> Startsida</div>
       <div class="sidebar-item" onclick="window.location.href='revisioner.html'"><i class="ti ti-clipboard-check"></i> Revisioner</div>
-      <div class="sidebar-item"><i class="ti ti-database"></i>Öppen data</div>
-      <div class="sidebar-item"><i class="ti ti-file-description"></i>Dokument</div>
-      <div class="sidebar-item"><i class="ti ti-chart-bar"></i>Statistik</div>
+      <div class="sidebar-item"><i class="ti ti-database"></i> Öppen data</div>
+      <div class="sidebar-item"><i class="ti ti-file-description"></i> Dokument</div>
+      <div class="sidebar-item"><i class="ti ti-chart-bar"></i> Statistik</div>
       <div class="sidebar-item"><i class="ti ti-settings"></i> Inställningar</div>
     </div>
   </div>
  
   <div class="main">
     <div class="topbar">
-      <h1>Byggherrerevisionen</h1>
-      <p>Kvarteret storken &nbsp;·&nbsp; Projektering, april 2026</p>
+      <div class="topbar-left">
+        <h1>Byggherrerevisionen</h1>
+        <p>Kvarteret Storken &nbsp;·&nbsp; <span id="topbar-fas">Projektering</span>, april 2026</p>
+      </div>
+      <div class="phase-pill">
+        <span class="phase-label">Fas</span>
+        <div class="phase-arrow disabled" id="arrow-left" onclick="changePhase(-1)"><i class="ti ti-chevron-left"></i></div>
+        <div class="phase-text" id="phase-text">Projektering</div>
+        <div class="phase-arrow" id="arrow-right" onclick="changePhase(1)"><i class="ti ti-chevron-right"></i></div>
+      </div>
     </div>
-    <div class="board">
  
-      <div class="column">
-        <div class="col-title">Byggherreansvar & laguppfyllelse</div>
-        <div class="card" onclick="openModal('organisation')"><div class="card-title">Byggherreansvar enligt PBL</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('avsteg')"><div class="card-title">Kontrollansvarig (KA) är utsedd</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('tillagg')"><div class="card-title">Kravställning från Byggherre är definerad</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('avtalSystem')"><div class="card-title">Kontrollplan</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
- 
-      <div class="column">
-        <div class="col-title">Avtal & upphandling</div>
-        <div class="card" onclick="openModal('budget')"><div class="card-title">Affärsform är vald</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('betalplan')"><div class="card-title">Tidsplan enligt kontrakt</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('riktkostnad')"><div class="card-title">Avtal med konsult finns</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('slutkostnad')"><div class="card-title">Ersättningsform är fastställd</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('budgetforandringar')"><div class="card-title">Kontroll- & verifieringskrav är reglerade</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
- 
-      <div class="column">
-        <div class="col-title">Projektering</div>
-        <div class="card" onclick="openModal('huvudtidsplan')"><div class="card-title">Projektorganisation</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('projektering')"><div class="card-title">Byggherrens krav är definerad inför projektering</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('produktion')"><div class="card-title">Funktionskrav är definerade</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('avvikelserTid')"><div class="card-title">Arbetsmiljörisker är beaktade</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
- 
-      <div class="column">
-        <div class="col-title">Överlämnande & förvaltning</div>
-        <div class="card" onclick="openModal('dokSystem')"><div class="card-title">Relationshandlingar finns</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('arkivering')"><div class="card-title">Drift- & underhållsinstruktioner</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('versioner')"><div class="card-title">Överlämnande till förvaltning sker</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
- 
-      <div class="column">
-        <div class="col-title">Verifiering</div>
-        <div class="card" onclick="openModal('byggmoten')"><div class="card-title">Kontrollplan är uppfylld</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('avvikelserRamp')"><div class="card-title">Kontrollprogram är uppfyllt</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('kmaplan')"><div class="card-title">Verifiering av funktionskrav är genomförd</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('kvalitetsplan')"><div class="card-title">Intyg & dokumentation</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
- 
-      <div class="column">
-        <div class="col-title">Regelverk</div>
-        <div class="card" onclick="openModal('bbr')"><div class="card-title">BBR</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('pbl')"><div class="card-title">PBL</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('afs')"><div class="card-title">AFS</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('miljobalken')"><div class="card-title">Miljöbalken</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-        <div class="card" onclick="openModal('rattvistbyggande')"><div class="card-title">Rättvist byggande</div><button class="card-btn"><i class="ti ti-arrow-right"></i></button></div>
-      </div>
- 
+    <div class="board" id="board">
+      <!-- Kolumner renderas av script.js -->
     </div>
   </div>
 </div>
  
-<div class="overlay" id="overlay" style="display:none;" onclick="handleOverlayClick(event)">
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()"><i class="ti ti-x"></i></button>
     <div class="modal-header">
@@ -94,18 +55,30 @@
         <div class="info-tooltip" id="modal-tooltip"></div>
       </div>
     </div>
+    <div class="modal-header-badges">
+      <div class="status-badge s-none" id="modal-badge"><div class="status-dot"></div><span></span></div>
+      <div class="bevaka-badge-modal s-none" id="modal-bevaka-badge"><div class="bevaka-dot"></div>Bevakas</div>
+    </div>
     <p class="modal-sub" id="modal-sub">–</p>
  
     <!-- Vanliga kontrollfrågor -->
     <div id="modal-tasks">
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Deluppgifter</span><span id="progress-text">0 / 0</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      </div>
       <div class="modal-section">Deluppgifter</div>
       <div class="checkbox-list" id="modal-checks"></div>
+      <button class="bevaka-btn" id="bevaka-btn" onclick="toggleFlag()">
+        <i class="ti ti-flag" id="bevaka-icon"></i>
+        <span id="bevaka-text">Bevaka</span>
+      </button>
       <div class="modal-section">Kommentar</div>
-      <textarea class="comment-area" placeholder="Skriv kommentar här..."></textarea>
-      <button class="save-btn">Spara</button>
+      <textarea class="comment-area" id="modal-comment" placeholder="Skriv kommentar här..."></textarea>
+      <button class="save-btn" onclick="saveModal()">Spara</button>
     </div>
  
-    <!-- Regelverk – dolt som standard -->
+    <!-- Regelverk -->
     <div id="modal-regelverk" style="display:none;">
       <div class="info-box">
         <div class="info-box-label">Om regelverket</div>
@@ -115,7 +88,18 @@
       <div class="info-links-label">Läs mer</div>
       <div id="modal-links"></div>
     </div>
+  </div>
+</div>
  
+<!-- FASBEKRÄFTELSE -->
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <h3>Byt fas?</h3>
+    <p>Är du säker på att alla kontrollfrågor i <strong id="confirm-from">Projektering</strong> är klara? Du kommer att gå vidare till <strong id="confirm-to">Produktion</strong>.</p>
+    <div class="confirm-btns">
+      <button class="confirm-no" onclick="cancelPhase()">Avbryt</button>
+      <button class="confirm-yes" onclick="confirmPhase()">Ja, gå vidare</button>
+    </div>
   </div>
 </div>
  
