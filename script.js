@@ -142,18 +142,6 @@ const columns = [
         ]
       },
       {
-        key: 'behoriga_aktorer',
-        title: 'Behöriga aktörer är utsedda',
-        sub: 'Är alla behöriga aktörer formellt utsedda och dokumenterade?',
-        tooltip: 'Utöver KA ska även BAS-P och andra lagstadgade roller vara utsedda och dokumenterade.',
-        checks: [
-          'Är BAS-P utsedd och dokumenterad?',
-          'Är arbetsmiljörisker under projekteringen identifierade?',
-          'Har arbetsmiljöplan tagits fram?',
-          'Alla aktörers behörighet är kontrollerad och arkiverad'
-        ]
-      },
-      {
         key: 'slutbesked',
         title: 'Slutbesked är planerat',
         sub: 'Är processen för att erhålla slutbesked planerad?',
