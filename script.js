@@ -87,10 +87,10 @@ const columns = [
         sub: 'Är byggherrens ansvar dokumenterat och känt i projektorganisationen?',
         tooltip: 'Byggherren har det fulla ansvaret för att byggnadsåtgärder utförs enligt PBL, PBF och BBR.',
         checks: [
-          'Byggherrens ansvar är skriftligt dokumenterat',
-          'Ansvarsfördelning är kommunicerad till projektorganisationen',
-          'Ansvarsdokumentet är godkänt och signerat av byggherre',
-          'Dokumentet är tillgängligt i projektets system'
+          'Är byggherrens ansvar skriftligt dokumenterat?',
+          'Är ansvarsfördelning är kommunicerad till projektorganisationen?',
+          'Är ansvarsdokumentet godkänt och signerat av byggherren?',
+          'Är samtliga dokumentet tillgängliga i projektets system?'
         ]
       },
       {
