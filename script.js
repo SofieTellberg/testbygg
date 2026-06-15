@@ -35,6 +35,50 @@ function updatePhaseUI() {
   document.getElementById('arrow-right').classList.toggle('disabled', currentPhase === phases.length - 1);
 }
  
+// ─── YRKESGRUPPER ──────────────────────────────────────────────────────────
+const yrkesgrupper = ['ark', 'kon', 'vvs', 'el', 'geo', 'brand'];
+const yrkesNamn = {
+  ark: 'Arkitekt',
+  kon: 'Konstruktör',
+  vvs: 'VVS-konsult',
+  el: 'Elkonsult',
+  geo: 'Geotekniker',
+  brand: 'Brandkonsult'
+};
+ 
+function toggleExpandMain(id) {
+  const content = document.getElementById('expand-content-' + id);
+  const arrow = document.getElementById('expand-arrow-' + id);
+  content.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+ 
+function toggleYrke(cardKey, yrke) {
+  const subs = document.getElementById('subs-' + cardKey + '-' + yrke);
+  const arrow = document.getElementById('arrow-' + cardKey + '-' + yrke);
+  subs.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+ 
+function updateYrke(cardKey, yrke) {
+  const subs = document.querySelectorAll('#subs-' + cardKey + '-' + yrke + ' input[type=checkbox]');
+  const anyChecked = Array.from(subs).some(cb => cb.checked);
+  const yrkeBox = document.getElementById('yrke-' + cardKey + '-' + yrke);
+  if (yrkeBox) yrkeBox.checked = anyChecked;
+  updateExpandMain(cardKey);
+}
+ 
+function updateExpandMain(cardKey) {
+  const allChecked = yrkesgrupper.every(yrke => {
+    const box = document.getElementById('yrke-' + cardKey + '-' + yrke);
+    return box && box.checked;
+  });
+  const mainBox = document.getElementById('expand-main-' + cardKey);
+  if (mainBox) mainBox.checked = allChecked;
+  // Uppdatera kortets status
+  updateCardStatus(cardKey);
+}
+ 
 // ─── DATA ──────────────────────────────────────────────────────────────────
 const columns = [
   {
@@ -100,6 +144,31 @@ const columns = [
           'Startbesked finns tillgängligt på arbetsplatsen',
           'Eventuella villkor i startbeskedet är uppfyllda'
         ]
+      },
+      {
+        key: 'tekniska_egenskaper',
+        title: 'Tekniska egenskapskrav är uppfyllda',
+        sub: 'Är de tekniska egenskapskraven enligt BBR beaktade?',
+        tooltip: 'BBR ställer krav på bärförmåga, brandskydd, hygien, buller, energihushållning m.m.',
+        checks: [
+          'Bärförmåga och stadga är verifierad',
+          'Brandskyddskrav är beaktade i projekteringen',
+          'Energikrav enligt BBR är uppfyllda',
+          'Bullerkrav är verifierade',
+          'Tillgänglighetskrav är beaktade'
+        ]
+      },
+      {
+        key: 'slutbesked',
+        title: 'Slutbesked är planerat',
+        sub: 'Är processen för att erhålla slutbesked planerad?',
+        tooltip: 'Slutbesked krävs för att byggnaden ska få tas i bruk. Alla villkor i startbeskedet måste vara uppfyllda.',
+        checks: [
+          'Ansökan om slutbesked är planerad',
+          'Alla kontrollpunkter i kontrollplanen är genomförda',
+          'KA har lämnat sitt utlåtande',
+          'Slutsamråd är genomfört med byggnadsnämnden'
+        ]
       }
     ]
   },
@@ -139,9 +208,12 @@ const columns = [
         checks: [
           'Alla erforderliga konsulter är kontrakterade',
           'Uppdragsbeskrivningar är fastställda i avtalen',
-          'Ersättningsform är reglerad i avtalen',
           'Avtal är signerade och arkiverade'
-        ]
+        ],
+        expandCheck: {
+          id: 'konsultavtal_expand',
+          label: 'Uppfyller samtliga projektörer kraven enligt PBL, PBF och BBR?'
+        }
       },
       {
         key: 'ersattningsform',
@@ -165,6 +237,34 @@ const columns = [
           'Verifieringskrav är dokumenterade',
           'Dokumentationskrav är reglerade',
           'Krav är accepterade av leverantören'
+        ],
+        expandCheck: {
+          id: 'kontroll_expand',
+          label: 'Har CV mottagits från samtliga konsulter?'
+        }
+      },
+      {
+        key: 'upphandlingsstrategi',
+        title: 'Upphandlingsstrategi är fastställd',
+        sub: 'Är upphandlingsstrategin beslutad och dokumenterad?',
+        tooltip: 'En tydlig upphandlingsstrategi skapar förutsättningar för effektiv konkurrens och kvalitetssäkring.',
+        checks: [
+          'Upphandlingsstrategi är dokumenterad',
+          'Utvärderingskriterier är fastställda',
+          'Förfrågningsunderlag är upprättat',
+          'Upphandlingen är genomförd enligt LOU om tillämpligt'
+        ]
+      },
+      {
+        key: 'ansvarsforsakring',
+        title: 'Ansvarsförsäkringar är kontrollerade',
+        sub: 'Har alla konsulter och entreprenörer giltiga ansvarsförsäkringar?',
+        tooltip: 'Giltiga ansvarsförsäkringar är ett grundläggande krav för alla som arbetar i projektet.',
+        checks: [
+          'Alla konsulters försäkringsbevis är kontrollerade',
+          'Försäkringsbelopp är tillräckliga',
+          'Försäkringarna gäller under hela projekttiden',
+          'Kopia på försäkringsbevis är arkiverade'
         ]
       }
     ]
@@ -220,6 +320,42 @@ const columns = [
           'Riskhanteringsplan är upprättad',
           'Arbetsmiljöhänsyn är integrerade i projekteringshandlingarna'
         ]
+      },
+      {
+        key: 'projekteringshandlingar',
+        title: 'Projekteringshandlingar är granskade',
+        sub: 'Är alla projekteringshandlingar granskade och godkända?',
+        tooltip: 'Granskning av projekteringshandlingar säkerställer att kraven är uppfyllda innan byggstart.',
+        checks: [
+          'Handlingar är granskade av byggherre',
+          'Teknisk granskning är genomförd',
+          'Avvikelser mot krav är hanterade',
+          'Slutliga handlingar är godkända och arkiverade'
+        ]
+      },
+      {
+        key: 'samordning_projektering',
+        title: 'Samordning av projektering',
+        sub: 'Är projekteringen samordnad mellan alla discipliner?',
+        tooltip: 'God samordning minskar risken för kollisioner och fel i byggskedet.',
+        checks: [
+          'Projekteringsmöten hålls regelbundet',
+          'BIM-samordning eller likvärdig process är etablerad',
+          'Kollisionskontroller är genomförda',
+          'Samordningsprotokoll är upprättade'
+        ]
+      },
+      {
+        key: 'miljo_projektering',
+        title: 'Miljöhänsyn i projekteringen',
+        sub: 'Är miljökrav och hållbarhetsmål integrerade i projekteringen?',
+        tooltip: 'Miljöhänsyn i projekteringsskedet påverkar byggnadens miljöprestanda under hela livscykeln.',
+        checks: [
+          'Miljömål är fastställda för projektet',
+          'Materialval är genomförda med hänsyn till miljö',
+          'Energiprestanda är beräknad och verifierad',
+          'Miljöcertifiering är planerad om tillämpligt'
+        ]
       }
     ]
   },
@@ -261,6 +397,42 @@ const columns = [
           'Förvaltningspersonal är identifierad',
           'Överlämnandemöte är genomfört',
           'Protokoll från överlämnandemöte är upprättat'
+        ]
+      },
+      {
+        key: 'garantibesiktning',
+        title: 'Garantibesiktning är planerad',
+        sub: 'Är garantibesiktning planerad och inbokad?',
+        tooltip: 'Garantibesiktning ska normalt genomföras två år efter slutbesked.',
+        checks: [
+          'Garantibesiktning är planerad',
+          'Datum för garantibesiktning är fastställt',
+          'Ansvarig för garantibesiktning är utsedd',
+          'Felrapportering under garantitiden är dokumenterad'
+        ]
+      },
+      {
+        key: 'forvaltningssystem',
+        title: 'Förvaltningssystem är uppdaterat',
+        sub: 'Är förvaltningssystemet uppdaterat med projektets information?',
+        tooltip: 'Ett uppdaterat förvaltningssystem är grunden för effektiv fastighetsförvaltning.',
+        checks: [
+          'Fastighetsinformation är inlagd i förvaltningssystemet',
+          'Tekniska system är registrerade',
+          'Underhållsplan är upprättad',
+          'Nyckelhantering är dokumenterad'
+        ]
+      },
+      {
+        key: 'hyresgast_inflyttning',
+        title: 'Hyresgästinflyttning är planerad',
+        sub: 'Är inflyttningsprocessen planerad och kommunicerad?',
+        tooltip: 'En välplanerad inflyttningsprocess skapar goda förutsättningar för hyresgästernas första tid.',
+        checks: [
+          'Inflyttningsschema är fastställt',
+          'Hyresgäster är informerade om inflyttningsprocess',
+          'Besiktning vid inflyttning är planerad',
+          'Felanmälningsrutin är kommunicerad till hyresgäster'
         ]
       }
     ]
@@ -316,6 +488,30 @@ const columns = [
           'OVK är utförd och godkänd',
           'Alla obligatoriska intyg är arkiverade'
         ]
+      },
+      {
+        key: 'besiktning',
+        title: 'Slutbesiktning är genomförd',
+        sub: 'Är slutbesiktning genomförd och godkänd?',
+        tooltip: 'Slutbesiktning ska genomföras av oberoende besiktningsman och är underlag för slutbesked.',
+        checks: [
+          'Slutbesiktning är genomförd',
+          'Besiktningsprotokoll är upprättat',
+          'Anmärkningar är åtgärdade',
+          'Besiktningsman har godkänt åtgärdade anmärkningar'
+        ]
+      },
+      {
+        key: 'energiuppfoljning',
+        title: 'Energiuppföljning är planerad',
+        sub: 'Är uppföljning av byggnadens energiprestanda planerad?',
+        tooltip: 'Energiuppföljning säkerställer att byggnaden uppnår de energikrav som ställts i projektet.',
+        checks: [
+          'Energimätning är installerad och driftsatt',
+          'Uppföljningsplan för energianvändning är upprättad',
+          'Ansvarig för energiuppföljning är utsedd',
+          'Energiprestanda är verifierad mot krav'
+        ]
       }
     ]
   },
@@ -325,10 +521,10 @@ const columns = [
     isRegelverk: true,
     cards: [
       { key: 'bbr', title: 'BBR', sub: 'Boverkets byggregler', tooltip: 'BBR innehåller regler om utformning och tekniska egenskapskrav på byggnadsverk.', info: 'Boverkets byggregler (BBR) innehåller regler om utformning samt tekniska egenskapskrav på byggnadsverk. Reglerna gäller vid uppförande av nya byggnader samt vid ändring av byggnader.', links: [{ title: 'Boverkets webbplats', sub: 'boverket.se – officiell information om BBR', url: 'https://www.boverket.se' }, { title: 'BBR – fullständig text', sub: 'Läs hela regelverket hos Boverket', url: 'https://www.boverket.se/sv/lag--ratt/boverkets-forfattningssamling/boverkets-byggregler---bbr/' }] },
-      { key: 'pbl', title: 'PBL', sub: 'Plan- och bygglagen', tooltip: 'PBL reglerar planläggning av mark och vatten samt byggande.', info: 'Plan- och bygglagen (PBL) innehåller bestämmelser om planläggning av mark och vatten och om byggande. Lagen syftar till att främja en samhällsutveckling med jämlika och goda sociala levnadsförhållanden.', links: [{ title: 'PBL på riksdagen.se', sub: 'Läs hela lagtexten', url: 'https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/plan--och-bygglag-2010900_sfs-2010-900/' }, { title: 'Boverket om PBL', sub: 'Boverkets vägledning om PBL', url: 'https://www.boverket.se/sv/PBL-kunskapsbanken/' }] },
-      { key: 'afs', title: 'AFS', sub: 'Arbetsmiljöverkets författningssamling', tooltip: 'AFS innehåller regler om arbetsmiljö och säkerhet på arbetsplatsen.', info: 'Arbetsmiljöverkets författningssamling (AFS) innehåller föreskrifter och allmänna råd om arbetsmiljö. Reglerna gäller för alla arbetsgivare och syftar till att förebygga ohälsa och olycksfall i arbetet.', links: [{ title: 'Arbetsmiljöverkets webbplats', sub: 'av.se – alla AFS-föreskrifter', url: 'https://www.av.se/arbetsmiljoarbete-och-inspektioner/lagar-och-regler-om-arbetsmiljo/arbetsmiljoverkets-foreskrifter/' }] },
-      { key: 'miljobalken', title: 'Miljöbalken', sub: 'Sveriges miljölagstiftning', tooltip: 'Miljöbalken samlar regler om miljöskydd, naturvård och hushållning med naturresurser.', info: 'Miljöbalken är en samlad svensk miljölagstiftning som trädde i kraft 1999. Den innehåller regler om miljöskydd, naturvård, hushållning med mark, vatten och andra naturresurser samt miljökonsekvensbeskrivningar.', links: [{ title: 'Miljöbalken på riksdagen.se', sub: 'Läs hela lagtexten', url: 'https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/miljobalk-1998808_sfs-1998-808/' }] },
-      { key: 'rattvistbyggande', title: 'Rättvist byggande', sub: 'Etiska riktlinjer för byggbranschen', tooltip: 'Rättvist byggande handlar om schyssta villkor och motverkande av osund konkurrens i byggbranschen.', info: 'Rättvist byggande är ett initiativ inom byggbranschen som syftar till att motverka osund konkurrens, säkerställa schyssta arbetsvillkor och bidra till en mer hållbar och transparent bransch.', links: [{ title: 'Rättvist byggande', sub: 'Läs mer om initiativet', url: 'https://www.rattvistbyggande.se/' }] }
+      { key: 'pbl', title: 'PBL', sub: 'Plan- och bygglagen', tooltip: 'PBL reglerar planläggning av mark och vatten samt byggande.', info: 'Plan- och bygglagen (PBL) innehåller bestämmelser om planläggning av mark och vatten och om byggande.', links: [{ title: 'PBL på riksdagen.se', sub: 'Läs hela lagtexten', url: 'https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/plan--och-bygglag-2010900_sfs-2010-900/' }, { title: 'Boverket om PBL', sub: 'Boverkets vägledning om PBL', url: 'https://www.boverket.se/sv/PBL-kunskapsbanken/' }] },
+      { key: 'afs', title: 'AFS', sub: 'Arbetsmiljöverkets författningssamling', tooltip: 'AFS innehåller regler om arbetsmiljö och säkerhet på arbetsplatsen.', info: 'Arbetsmiljöverkets författningssamling (AFS) innehåller föreskrifter och allmänna råd om arbetsmiljö.', links: [{ title: 'Arbetsmiljöverkets webbplats', sub: 'av.se – alla AFS-föreskrifter', url: 'https://www.av.se/arbetsmiljoarbete-och-inspektioner/lagar-och-regler-om-arbetsmiljo/arbetsmiljoverkets-foreskrifter/' }] },
+      { key: 'miljobalken', title: 'Miljöbalken', sub: 'Sveriges miljölagstiftning', tooltip: 'Miljöbalken samlar regler om miljöskydd, naturvård och hushållning med naturresurser.', info: 'Miljöbalken är en samlad svensk miljölagstiftning som trädde i kraft 1999.', links: [{ title: 'Miljöbalken på riksdagen.se', sub: 'Läs hela lagtexten', url: 'https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/miljobalk-1998808_sfs-1998-808/' }] },
+      { key: 'rattvistbyggande', title: 'Rättvist byggande', sub: 'Etiska riktlinjer för byggbranschen', tooltip: 'Rättvist byggande handlar om schyssta villkor och motverkande av osund konkurrens i byggbranschen.', info: 'Rättvist byggande är ett initiativ inom byggbranschen som syftar till att motverka osund konkurrens.', links: [{ title: 'Rättvist byggande', sub: 'Läs mer om initiativet', url: 'https://www.rattvistbyggande.se/' }] }
     ]
   }
 ];
@@ -337,7 +533,12 @@ const columns = [
 const state = {};
 columns.forEach(col => {
   col.cards.forEach(card => {
-    state[card.key] = { checks: [], flagged: false, comment: '' };
+    state[card.key] = { checks: [], flagged: false, comment: '', expandChecks: {} };
+    if (card.expandCheck) {
+      yrkesgrupper.forEach(yrke => {
+        state[card.key].expandChecks[yrke] = { cv: false, ref: false, annat: false };
+      });
+    }
   });
 });
  
@@ -368,12 +569,25 @@ function renderBoard() {
 // ─── STATUS ────────────────────────────────────────────────────────────────
 function getStatus(key) {
   const card = findCard(key);
-  if (!card || card.isRegelverk) return null;
-  const total = card.checks.length;
-  const checked = (state[key].checks || []).filter(Boolean).length;
+  if (!card || isRegelverk(key)) return null;
+  const s = state[key];
+  const total = card.checks.length + (card.expandCheck ? 1 : 0);
+  let checked = (s.checks || []).filter(Boolean).length;
+  if (card.expandCheck) {
+    const allYrken = yrkesgrupper.every(yrke => {
+      const e = s.expandChecks[yrke];
+      return e && (e.cv || e.ref || e.annat);
+    });
+    if (allYrken) checked++;
+  }
   if (checked === 0) return null;
   if (checked < total) return 'pagaende';
   return 'klar';
+}
+ 
+function updateCardStatus(key) {
+  const status = getStatus(key);
+  applyBadge(document.getElementById('badge-' + key), status);
 }
  
 function applyBadge(el, status) {
@@ -411,6 +625,77 @@ function isRegelverk(key) {
 // ─── MODAL ─────────────────────────────────────────────────────────────────
 let currentKey = null;
  
+function renderExpandCheck(card) {
+  const s = state[card.key];
+  const allChecked = yrkesgrupper.every(yrke => {
+    const e = s.expandChecks[yrke];
+    return e && (e.cv || e.ref || e.annat);
+  });
+  return `
+    <div class="divider"></div>
+    <div class="expand-item">
+      <div class="expand-header">
+        <input type="checkbox" id="expand-main-${card.key}" ${allChecked ? 'checked' : ''} style="pointer-events:none; width:15px; height:15px; accent-color:#e87722;">
+        <label class="expand-label">${card.expandCheck.label}</label>
+        <div class="expand-arrow" id="expand-arrow-${card.key}" onclick="toggleExpandMain('${card.key}')">
+          <i class="ti ti-chevron-down"></i>
+        </div>
+      </div>
+      <div class="expand-content" id="expand-content-${card.key}">
+        ${yrkesgrupper.map(yrke => {
+          const e = s.expandChecks[yrke];
+          const yrkeChecked = e && (e.cv || e.ref || e.annat);
+          return `
+            <div class="yrke-item">
+              <div class="yrke-header">
+                <input type="checkbox" id="yrke-${card.key}-${yrke}" ${yrkeChecked ? 'checked' : ''} style="pointer-events:none; width:13px; height:13px; accent-color:#e87722;">
+                <label class="yrke-label">${yrkesNamn[yrke]}</label>
+                <div class="yrke-arrow" id="arrow-${card.key}-${yrke}" onclick="toggleYrke('${card.key}','${yrke}')">
+                  <i class="ti ti-chevron-down"></i>
+                </div>
+              </div>
+              <div class="yrke-subs" id="subs-${card.key}-${yrke}">
+                <div class="sub-item"><input type="checkbox" id="${card.key}-${yrke}-cv" ${e && e.cv ? 'checked' : ''} onchange="updateSubCheck('${card.key}','${yrke}','cv',this.checked)"><label for="${card.key}-${yrke}-cv">CV</label></div>
+                <div class="sub-item"><input type="checkbox" id="${card.key}-${yrke}-ref" ${e && e.ref ? 'checked' : ''} onchange="updateSubCheck('${card.key}','${yrke}','ref',this.checked)"><label for="${card.key}-${yrke}-ref">Referensprojekt</label></div>
+                <div class="sub-item"><input type="checkbox" id="${card.key}-${yrke}-annat" ${e && e.annat ? 'checked' : ''} onchange="updateSubCheck('${card.key}','${yrke}','annat',this.checked)"><label for="${card.key}-${yrke}-annat">Annat</label></div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+ 
+function toggleExpandMain(cardKey) {
+  const content = document.getElementById('expand-content-' + cardKey);
+  const arrow = document.getElementById('expand-arrow-' + cardKey);
+  content.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+ 
+function toggleYrke(cardKey, yrke) {
+  const subs = document.getElementById('subs-' + cardKey + '-' + yrke);
+  const arrow = document.getElementById('arrow-' + cardKey + '-' + yrke);
+  subs.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+ 
+function updateSubCheck(cardKey, yrke, field, val) {
+  state[cardKey].expandChecks[yrke][field] = val;
+  const e = state[cardKey].expandChecks[yrke];
+  const yrkeChecked = e.cv || e.ref || e.annat;
+  const yrkeBox = document.getElementById('yrke-' + cardKey + '-' + yrke);
+  if (yrkeBox) yrkeBox.checked = yrkeChecked;
+  const allChecked = yrkesgrupper.every(y => {
+    const ex = state[cardKey].expandChecks[y];
+    return ex && (ex.cv || ex.ref || ex.annat);
+  });
+  const mainBox = document.getElementById('expand-main-' + cardKey);
+  if (mainBox) mainBox.checked = allChecked;
+  updateModal();
+}
+ 
 function openModal(key) {
   currentKey = key;
   const card = findCard(key);
@@ -440,12 +725,16 @@ function openModal(key) {
     document.getElementById('modal-tasks').style.display = 'block';
     document.getElementById('modal-regelverk').style.display = 'none';
     const s = state[key];
-    document.getElementById('modal-checks').innerHTML = card.checks.map((q, i) => `
+    let checksHTML = card.checks.map((q, i) => `
       <div class="checkbox-item">
         <input type="checkbox" id="chk-${i}" ${s.checks[i] ? 'checked' : ''} onchange="updateModal()">
         <label for="chk-${i}">${q}</label>
       </div>
     `).join('');
+    if (card.expandCheck) {
+      checksHTML += renderExpandCheck(card);
+    }
+    document.getElementById('modal-checks').innerHTML = checksHTML;
     document.getElementById('modal-comment').value = s.comment || '';
     updateModal();
   }
@@ -456,14 +745,21 @@ function openModal(key) {
 function updateModal() {
   if (!currentKey || isRegelverk(currentKey)) return;
   const card = findCard(currentKey);
-  const boxes = document.querySelectorAll('#modal-checks input[type=checkbox]');
+  const boxes = document.querySelectorAll('#modal-checks > .checkbox-item input[type=checkbox]');
   state[currentKey].checks = Array.from(boxes).map(b => b.checked);
-  const total = card.checks.length;
-  const checked = state[currentKey].checks.filter(Boolean).length;
+  const status = getStatus(currentKey);
+  const total = card.checks.length + (card.expandCheck ? 1 : 0);
+  let checked = state[currentKey].checks.filter(Boolean).length;
+  if (card.expandCheck) {
+    const allYrken = yrkesgrupper.every(yrke => {
+      const e = state[currentKey].expandChecks[yrke];
+      return e && (e.cv || e.ref || e.annat);
+    });
+    if (allYrken) checked++;
+  }
   const pct = total > 0 ? (checked / total) * 100 : 0;
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-text').textContent = checked + ' / ' + total;
-  const status = getStatus(currentKey);
   applyBadge(document.getElementById('modal-badge'), status);
   applyBadge(document.getElementById('badge-' + currentKey), status);
   const flagged = state[currentKey].flagged;
@@ -500,4 +796,3 @@ function handleOverlayClick(e) {
 // ─── INIT ──────────────────────────────────────────────────────────────────
 renderBoard();
 updatePhaseUI();
- 
