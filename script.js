@@ -96,13 +96,13 @@ const columns = [
       {
         key: 'ka_utsedd',
         title: 'Kontrollansvarig (KA) är utsedd',
-        sub: 'Är KA utsedd och dokumenterad enligt PBL 10 kap?',
+        sub: 'Är KA utsedd och dokumenterad enligt PBL?',
         tooltip: 'KA ska vara certifierad och registrerad. Uppdraget ska regleras i ett skriftligt avtal.',
         checks: [
-          'KA är formellt utsedd och dokumenterad',
-          'KA är certifierad enligt PBL',
-          'KA:s uppdragsbeskrivning är fastställd',
-          'KA är anmäld till byggnadsnämnden'
+          'Är KA formellt utsedd och dokumenterad?',
+          'Innehar KA giltigt certifikat?',
+          'Har KA en fastställd beskrivning av uppdragets omfattning samt ansvarsområden?,
+          'Är KA uppdrag väldefinerat?'
         ]
       },
       {
@@ -111,10 +111,10 @@ const columns = [
         sub: 'Är byggherrens krav dokumenterade i projektets handlingar?',
         tooltip: 'Byggherrens krav ska vara tydligt definierade och förankrade med projektorganisationen.',
         checks: [
-          'Kravdokument är upprättat och versionshanterat',
-          'Funktionskrav är specificerade',
-          'Kraven är förankrade med projektorganisationen',
-          'Kravdokumentet är godkänt av byggherre'
+          'Är kravdokument upprättat och fastställt?',
+          'Är kunktionskrav specificerade?',
+          'Är kraven förankrade med den egna projektorganisationen?',
+          'Är kravdokumentet godkänt av byggherren?'
         ]
       },
       {
@@ -123,10 +123,10 @@ const columns = [
         sub: 'Finns kontrollplan upprättad enligt PBL?',
         tooltip: 'Kontrollplanen ska beskriva vilka kontroller som ska utföras, vem som ansvarar och hur resultatet dokumenteras.',
         checks: [
-          'Kontrollplan är upprättad enligt PBL',
-          'Kontrollplanen är godkänd av byggnadsnämnden',
-          'Ansvar för respektive kontrollpunkt är fördelat',
-          'Kontrollplanen är känd av projektorganisationen'
+          'Är en kontrollplan upprättad enligt PBL?',
+          'Är kontrollplanen godkänd?',
+          'Är ansvar för respektive kontrollpunkt fördelat?',
+          'Är kontrollplanen känd av projektorganisationen?'
         ]
       },
       {
@@ -135,21 +135,21 @@ const columns = [
         sub: 'Är bygglov beviljat och startbesked erhållet?',
         tooltip: 'Byggnadsarbeten får inte påbörjas innan startbesked har givits av byggnadsnämnden.',
         checks: [
-          'Bygglov är beviljat',
-          'Startbesked är erhållet',
-          'Startbesked finns tillgängligt på arbetsplatsen',
-          'Eventuella villkor i startbeskedet är uppfyllda'
+          'Har bygglov beviljat?',
+          'Har startbesked erhållits?',
+          'Finns startbesked tillgängligt på arbetsplatsen?',
+          'Är eventuella villkor i startbeskedet uppfyllda?'
         ]
       },
       {
         key: 'behoriga_aktorer',
         title: 'Behöriga aktörer är utsedda',
         sub: 'Är alla behöriga aktörer formellt utsedda och dokumenterade?',
-        tooltip: 'Utöver KA ska även BAS-P, BAS-U och andra lagstadgade roller vara utsedda och dokumenterade.',
+        tooltip: 'Utöver KA ska även BAS-P och andra lagstadgade roller vara utsedda och dokumenterade.',
         checks: [
-          'BAS-P är utsedd och dokumenterad',
-          'BAS-U är utsedd och dokumenterad',
-          'Certifierade hantverkare för kontrollerade moment är identifierade',
+          'Är BAS-P utsedd och dokumenterad?',
+          'Är arbetsmiljörisker under projekteringen identifierade?',
+          'Har arbetsmiljöplan tagits fram?',
           'Alla aktörers behörighet är kontrollerad och arkiverad'
         ]
       },
